@@ -1,0 +1,28 @@
+.color-pallete,.image-pallete{
+    display: flex;
+    // flex-wrap: wrap;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    background-color: rgb(32, 33, 36);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    .color,.image{
+        height: 2rem;
+        width: 2rem;
+        border-radius:50%;
+        cursor: pointer;
+        &:hover{
+            border: 1px solid ;
+        }
+    }
+    .transparentBorder{
+        border: 1px solid ;
+    }
+    .image{
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: transparent;
+        height: 2.5rem;
+        width: 2.5rem;
+    }
+}

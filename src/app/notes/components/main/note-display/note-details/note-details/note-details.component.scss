@@ -1,0 +1,95 @@
+.single-note {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(95, 99, 104);
+    border-radius: 0.25rem;
+    width: 40rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    padding: 0.5rem;
+
+    .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 2.5rem;
+        cursor: pointer;
+        width: 2.5rem;
+        border-radius: 50%;
+
+        &>i {
+            font-size: medium;
+        }
+
+        &:hover {
+            background-color: rgba(84, 84, 84, 0.245);
+        }
+    }
+
+    &>header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &>p {
+            color: rgb(204, 204, 204);
+            font-weight: bold;
+        }
+    }
+
+    &>main {
+        &>textarea {
+            color: rgb(137, 137, 137);
+            text-align: justify;
+            border: none;
+            outline: none;
+            resize: none;
+            height: auto;
+            white-space: pre-line;
+            width: 100%;
+            background-color: transparent;
+        }
+
+        .edited-on {
+            text-align: right;
+
+            &>p {
+                color: rgb(137, 137, 137);
+                font-size: small;
+                font-style: italic;
+            }
+        }
+
+        .labels {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+
+            &>p {
+                color: rgb(137, 137, 137);
+                font-size: small;
+                border: 1px solid rgb(95, 99, 104);
+                padding: 0.25rem;
+                border-radius: 0.5rem;
+            }
+        }
+    }
+
+    &>footer {
+        display: flex;
+        align-items: center;
+
+        &>button {
+            background-color: transparent;
+            border-radius: 0.25rem;
+            padding: 0.5rem;
+            color: rgb(137, 137, 137);
+            border: none;
+            font-weight: bold;
+            outline: none;
+
+            &:hover {
+                background-color: rgba(84, 84, 84, 0.245);
+            }
+        }
+    }
+}

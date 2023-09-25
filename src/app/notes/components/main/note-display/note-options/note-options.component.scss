@@ -1,0 +1,24 @@
+.options-menu {
+    background-color: rgb(32, 33, 36);
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+
+    &>ul {
+        display: flex;
+        flex-direction: column;
+        width: max-content;
+        list-style: none;
+
+        &>li {
+            padding: 0.5rem;
+            width: 7rem;
+            text-align: left;
+            font-size: small;
+            cursor: pointer;
+
+            &:hover {
+                background-color: rgba(84, 84, 84, 0.245);
+            }
+        }
+    }
+}

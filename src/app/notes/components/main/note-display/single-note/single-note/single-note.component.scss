@@ -1,0 +1,120 @@
+.single-note {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(95, 99, 104);
+    border-radius: 0.25rem;
+    width: 15rem;
+    max-height: 30rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    &:hover {
+
+        &>.info,
+        footer {
+            .icon {
+                opacity: 1
+            }
+        }
+    }
+
+    .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 2.5rem;
+        cursor: pointer;
+        width: 2.5rem;
+        border-radius: 50%;
+        opacity: 0;
+        transition: opacity 0.3s;
+
+        &>i {
+            font-size: medium;
+        }
+
+        &:hover {
+            background-color: rgba(84, 84, 84, 0.245);
+        }
+    }
+
+    &>.info {
+        display: flex;
+        width: 100%;
+        padding: 0.5rem;
+
+        &>main {
+            width: 100%;
+            height: auto;
+
+            &>header {
+                width: 12rem;
+                color: rgb(204, 204, 204);
+                font-weight: bold;
+                margin-bottom: 5px;
+                text-align: justify;
+            }
+
+            .edited-on {
+                text-align: right;
+
+                &>p {
+                    color: rgb(137, 137, 137);
+                    font-size: small;
+                    font-style: italic;
+                }
+            }
+
+            .labels {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+
+                &>p {
+                    font-size: small;
+                    border: 1px solid rgb(179, 179, 179);
+                    padding: 0.25rem;
+                    border-radius: 0.5rem;
+                }
+            }
+        }
+    }
+
+    &>footer {
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        .icon {
+            .name {
+                position: absolute;
+                width: max-content;
+                padding: 0.15rem;
+                border-radius: 0.25rem;
+                bottom: -1rem;
+                text-align: center;
+                font-size: small;
+                background-color: rgba(82, 83, 85, 0.67);
+            }
+        }
+        &>.options{
+            position: absolute;
+            bottom: 1.5rem;
+            right: 0;
+        }
+        &>.label-editor-component{
+            position: absolute;
+            bottom: 2rem;
+            right: -1rem;
+            background-color: rgb(32,33,36);
+            z-index: 1;
+        }
+        &>.color-picker {
+            position: absolute;
+            align-self: center;
+            bottom: -6rem;
+        }
+    }
+}

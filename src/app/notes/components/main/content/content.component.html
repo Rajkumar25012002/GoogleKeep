@@ -1,0 +1,26 @@
+<div class="contents" (mouseenter)="showAllLabels()" (mouseleave)="hideAllLabels()" [ngStyle]="{boxShadow: showLabels() ? '5px 0 5px -5px rgba(0, 0, 0, 0.5)' : ''}">
+    <div class="notes side">
+        <i class="fa-regular fa-lightbulb"></i>
+        <p *ngIf="showLabels()">Notes</p>
+    </div>
+    <div class="notes side">
+        <i class="fa-solid fa-bell"></i>
+        <p *ngIf="showLabels()">Remainders</p>
+    </div>
+    <div *ngFor="let title of titles" class="title side">
+        <i class="fa-solid fa-tag"></i>
+        <p *ngIf="showLabels()">{{title}}</p>
+    </div>
+    <div class="notes side">
+        <i class="fa-solid fa-pencil"></i>
+        <p *ngIf="showLabels()">Edit labels</p>
+    </div>
+    <div class="notes side">
+        <i class="fa-solid fa-file-export"></i>
+        <p *ngIf="showLabels()">Archieve</p>
+    </div>
+    <div class="notes side">
+        <i class="fa-solid fa-trash"></i>
+        <p *ngIf="showLabels()">Bin</p>
+    </div>
+</div>

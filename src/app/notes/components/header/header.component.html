@@ -1,0 +1,19 @@
+<header>
+    <div class="info">
+        <div class="icon" (click)="toggleAllLabels()"><i class="fa-solid fa-bars"></i></div>
+        <img src="../../../assets/googleKeep.png" alt="">
+        <p>Keep</p>
+    </div>
+    <div class="search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="Search" />
+    </div>
+    <div class="options">
+        <div class="icon" *ngFor="let item of navIconsData" [ngStyle]="{display: item.showIcon ? '' : 'none'}">
+            <i [ngClass]="item.iconClasses" (click)="item.clickAction()" (mouseover)="showIconName(item.iconName)"
+                (mouseout)="hideIconName()" (click)="item.clickAction()">
+            </i>
+            <p *ngIf="item.showName" class="name">{{item.iconName}}</p>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,30 @@
+<div class="single-note">
+    <header>
+        <p>{{note.title}}</p>
+        <div class="icon">
+            <i class="fa-solid fa-thumbtack"></i>
+        </div>
+    </header>
+    <main class="content">
+        <textarea type="text" placeholder="Take a note..." [value]="note.content"></textarea>
+        <div class="edited-on">
+            <p>{{note.editedOn | date:'dd-MM-yyyy hh:mm'}}</p>
+        </div>
+        <div class="labels">
+            <p>Label1</p>
+            <p>Label2</p>
+        </div>
+    </main>
+    <footer>
+        <div class="icon"><i class="fa-solid fa-bell"></i></div>
+        <div class="icon"><i class="fa-solid fa-user-plus"></i></div>
+        <div class="icon"><i class="fa-solid fa-palette"></i></div>
+        <div class="icon"><i class="fa-regular fa-image"></i></div>
+        <div class="icon"><i class="fa-solid fa-file-export"></i></div>
+        <div class="icon"><i class="fa-solid fa-ellipsis-vertical"></i></div>
+        <div class="icon"><i class="fa-solid fa-rotate-left"></i></div>
+        <div class="icon"><i class="fa-solid fa-rotate-right"></i></div>
+        <button>Close</button>
+    </footer>
+
+</div>

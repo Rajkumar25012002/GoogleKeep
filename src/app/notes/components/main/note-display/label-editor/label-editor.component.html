@@ -1,0 +1,14 @@
+<div class="label-editor">
+    <h4 class="header">Label note</h4>
+    <div class="search-label">
+        <input type="text" placeholder="Enter label name" [(ngModel)]="searchLabel" />
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+    <div class="label-display">
+        <div class="label" *ngFor="let item of filterLabels()">
+            <input type="checkbox" [checked]="note?.labels?.includes(item)" />
+            <p>{{item}}</p>
+        </div>
+    </div>
+    <p class="no-label" *ngIf="!filterLabels()?.length">No labels available</p>
+</div>
