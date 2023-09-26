@@ -7,9 +7,7 @@ import { SharedService } from '../../services/shared.service';
 })
 export class HeaderComponent {
   constructor(private sharedService: SharedService) {}
-  @Input('isGridDisplay') isGridDisplay!: boolean;
-  @Output('isGridDisplayChange') isGridDisplayChange =
-    new EventEmitter<boolean>();
+  isGridDisplay: boolean = true;
   isChangeDisplayInProgress: boolean = false;
   navIconsData: any[] = [
     {
@@ -59,6 +57,9 @@ export class HeaderComponent {
   ngOnInit() {
     this.navIconsData[1].showIcon = this.isGridDisplay;
     this.navIconsData[2].showIcon = !this.isGridDisplay;
+    this.sharedService.isGridDisplay$.subscribe((isGridDisplay) => {
+      this.isGridDisplay = isGridDisplay;
+    });
   }
   showIconName(iconName: string): void {
     this.navIconsData.map((icon) => {
@@ -74,7 +75,7 @@ export class HeaderComponent {
   changeDisplay(): void {
     this.isChangeDisplayInProgress = true;
     this.isGridDisplay = !this.isGridDisplay;
-    this.isGridDisplayChange.emit(this.isGridDisplay);
+    this.sharedService.toggleGridDisplay();
     this.navIconsData[1].showIcon = this.isGridDisplay;
     this.navIconsData[2].showIcon = !this.isGridDisplay;
     setTimeout(() => {

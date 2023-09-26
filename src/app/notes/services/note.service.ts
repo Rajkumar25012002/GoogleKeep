@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Note } from '../types/note';
-import { Observable, BehaviorSubject, map, concatMap } from 'rxjs';
+import { Observable, BehaviorSubject, map} from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
@@ -19,7 +19,7 @@ export class NoteService {
   getNotes(): Observable<Note[]> {
     return this.notes$;
   }
-  getNoteById(id: string): Observable<Note | undefined> {
+  getNoteById(id: string|null): Observable<Note | undefined> {
     return this.notes$.pipe(
       map((notes: Note[]) => notes.find((note: Note) => note.id === id))
     );

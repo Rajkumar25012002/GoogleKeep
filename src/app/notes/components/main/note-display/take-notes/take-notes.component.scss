@@ -1,0 +1,120 @@
+.take-note {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(95, 99, 104);
+    position: relative;
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+
+    .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 2.5rem;
+        cursor: pointer;
+        width: 2.5rem;
+        border-radius: 50%;
+
+        &>i {
+            font-size: medium;
+        }
+
+        &:hover {
+            background-color: rgba(84, 84, 84, 0.245);
+        }
+
+        &>.name {
+            position: absolute;
+            width: max-content;
+            padding: 0.15rem;
+            border-radius: 0.25rem;
+            bottom: -1rem;
+            text-align: center;
+            font-size: small;
+            background-color: rgba(82, 83, 85, 0.67);
+        }
+    }
+
+    &>main {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            &>input {
+                color: rgb(137, 137, 137);
+                font-weight: bold;
+                background-color: transparent;
+                border: none;
+                outline: none;
+            }
+
+            &>* {
+                padding: 1rem;
+            }
+        }
+
+        .body {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+
+            &>* {
+                padding: 1rem;
+            }
+
+            &>input {
+                height: 2rem;
+                width: 25rem;
+                background-color: transparent;
+                border: none;
+                outline: none;
+                font-weight: bold;
+                font-size: 1rem;
+            }
+
+            &>textarea {
+                background-color: transparent;
+                border: none;
+                width: 100%;
+                outline: none;
+                resize: none;
+                height: auto;
+                overflow: visible;
+                white-space: pre-line;
+            }
+        }
+    }
+
+    .footer {
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        &>button {
+            margin-left: 10rem;
+            background-color: transparent;
+            border-radius: 0.25rem;
+            padding: 0.5rem;
+            color: rgb(137, 137, 137);
+            border: none;
+            font-weight: bold;
+            outline: none;
+
+            &:hover {
+                background-color: rgba(84, 84, 84, 0.245);
+            }
+        }
+    }
+
+    .color-picker {
+        position: absolute;
+        align-self: center;
+        bottom: -6rem;
+    }
+}

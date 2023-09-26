@@ -47,24 +47,14 @@
 
         &>main {
             width: 100%;
-            height: auto;
-
+            max-height: 20rem;
+            overflow: hidden;
             &>header {
                 width: 12rem;
                 color: rgb(204, 204, 204);
                 font-weight: bold;
                 margin-bottom: 5px;
                 text-align: justify;
-            }
-
-            .edited-on {
-                text-align: right;
-
-                &>p {
-                    color: rgb(137, 137, 137);
-                    font-size: small;
-                    font-style: italic;
-                }
             }
 
             .labels {

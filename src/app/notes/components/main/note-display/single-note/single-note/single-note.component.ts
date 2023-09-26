@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Note } from 'src/app/notes/types/note';
 import { DatePipe } from '@angular/common';
 import { NoteService } from 'src/app/notes/services/note.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-single-note',
@@ -12,7 +13,7 @@ import { NoteService } from 'src/app/notes/services/note.service';
 export class SingleNoteComponent {
   @Input('note') note!: Note;
   @Input('isGridDisplay') isGridDisplay!: boolean;
-  constructor(private noteService: NoteService) {}
+  constructor(private noteService: NoteService,private router:Router) {}
   show: boolean = false;
   isOptionsMenuVisible: boolean = false;
   isLabelEditorVisible: boolean = false;
@@ -102,5 +103,8 @@ export class SingleNoteComponent {
   makeCopy(): void {
     this.isOptionsMenuVisible = false;
     this.noteService.addCopy(this.note);
+  }
+  openNoteDetails():void {
+    this.router.navigate([`/note/${this.note.id}`]);
   }
 }

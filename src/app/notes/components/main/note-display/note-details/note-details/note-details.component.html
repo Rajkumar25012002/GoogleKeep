@@ -1,30 +1,38 @@
-<div class="single-note">
-    <header>
-        <p>{{note.title}}</p>
-        <div class="icon">
-            <i class="fa-solid fa-thumbtack"></i>
-        </div>
-    </header>
-    <main class="content">
-        <textarea type="text" placeholder="Take a note..." [value]="note.content"></textarea>
-        <div class="edited-on">
-            <p>{{note.editedOn | date:'dd-MM-yyyy hh:mm'}}</p>
-        </div>
-        <div class="labels">
-            <p>Label1</p>
-            <p>Label2</p>
-        </div>
-    </main>
-    <footer>
-        <div class="icon"><i class="fa-solid fa-bell"></i></div>
-        <div class="icon"><i class="fa-solid fa-user-plus"></i></div>
-        <div class="icon"><i class="fa-solid fa-palette"></i></div>
-        <div class="icon"><i class="fa-regular fa-image"></i></div>
-        <div class="icon"><i class="fa-solid fa-file-export"></i></div>
-        <div class="icon"><i class="fa-solid fa-ellipsis-vertical"></i></div>
-        <div class="icon"><i class="fa-solid fa-rotate-left"></i></div>
-        <div class="icon"><i class="fa-solid fa-rotate-right"></i></div>
-        <button>Close</button>
-    </footer>
+<div class="popup-background" *ngIf="note!=undefined">
+    <div class="single-note"
+        [ngStyle]="{backgroundColor: note.backgroundColor,backgroundImage: 'url(' + note.backgroundImage + ')'}">
+        <div class="info">
+            <main class="note-content">
+                <header>{{note.title}}</header>
+                <textarea #textcontent type="text" [(ngModel)]="note.content"
+                    (input)="adjustTextareaHeight(textcontent)"></textarea>
 
+            </main>
+            <div class="icon" (click)="pinNote()">
+                <i class="fa-solid fa-thumbtack" [ngStyle]="{color: note.isPinned ? 'rgb(251,188,4)' : ''}"></i>
+            </div>
+        </div>
+        <div *ngIf="note.labels && note.labels.length > 0" class="labels">
+            <p *ngFor="let item of note.labels">{{item}}</p>
+        </div>
+        <p class="edited-on">{{note.editedOn | date:"dd-MMM-yyyy hh:mm"}}</p>
+        <footer>
+            <div class="icon" *ngFor="let item of iconData">
+                <i [ngClass]="item.iconClasses" (mouseover)="showIconName(item.iconName)" (mouseout)="hideIconName()"
+                    (click)="item.clickAction()">
+                </i>
+                <p *ngIf="item.showName" class="name">{{item.iconName}}</p>
+            </div>
+            <button (click)="close()">Close</button>
+            <app-note-options class="options" *ngIf="isOptionsMenuVisible" (changeLabelClicked)="changeLabel()"
+                (deleteNoteClicked)="deleteNote()" (makeCopyClicked)="makeCopy()">
+            </app-note-options>
+            <app-label-editor class="label-editor-component" [noteId]="note.id"
+                *ngIf="isLabelEditorVisible"></app-label-editor>
+            <div class="color-picker" (click)="showColorPicker()">
+                <app-color-picker [show]="show" [(selectedColor)]="selectedColor"
+                    [(selectedImage)]="selectedImage"></app-color-picker>
+            </div>
+        </footer>
+    </div>
 </div>

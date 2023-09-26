@@ -12,12 +12,65 @@ export class ContentComponent implements OnInit {
     private noteService: NoteService,
     private sharedService: SharedService
   ) {}
-  titles: string[] = [];
-  ngOnInit(): void {
-    this.noteService.getTitles().subscribe((titles: string[]) => {
-      this.titles = titles;
+  labelIconData: any[] = [];
+generalIconData: any[] = [];
+
+ngOnInit(): void {
+  this.generateGeneralIconData();
+  this.noteService.getTitles().subscribe((titles: string[]) => {
+    this.updateLabelIconData(titles);
+  });
+}
+
+updateLabelIconData(titles: string[]): void {
+  this.labelIconData = [];
+  titles.forEach((title) => {
+    this.labelIconData.push({
+      iconClasses: 'fa-solid fa-tag',
+      clickAction: () => {},
+      iconName: title,
+      showName: true,
+      routerLink: `labels/${title}`,
     });
-  }
+  });
+  this.generateGeneralIconData();
+}
+
+generateGeneralIconData(): void {
+  this.generalIconData = [
+    {
+      iconClasses: 'fa-regular fa-bell',
+      clickAction: () => {},
+      iconName: 'Notes',
+      routerLink: '/',
+    },
+    {
+      iconClasses: 'fa-solid fa-tag',
+      clickAction: () => {},
+      iconName: 'Remainders',
+      routerLink: '/remainders',
+    },
+    ...this.labelIconData,
+    {
+      iconClasses: 'fa-solid fa-pencil',
+      clickAction: () => {},
+      iconName: 'Edit labels',
+      routerLink: '/labels',
+    },
+    {
+      iconClasses: 'fa-solid fa-file-export',
+      clickAction: () => {},
+      iconName: 'Archieve',
+      routerLink: '/archieve',
+    },
+    {
+      iconClasses: 'fa-solid fa-trash',
+      clickAction: () => {},
+      iconName: 'Bin',
+      routerLink: '/bin',
+    },
+  ];
+}
   showAllLabels(): void {
     setTimeout(() => {
       this.sharedService.showAllLabels();

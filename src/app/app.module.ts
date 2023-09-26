@@ -13,6 +13,9 @@ import { LabelExtractorDirective } from './notes/directives/label-extractor.dire
 import { NoteOptionsComponent } from './notes/components/main/note-display/note-options/note-options.component';
 import { LabelEditorComponent } from './notes/components/main/note-display/label-editor/label-editor.component';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { OrderPinnedNotesPipe } from './notes/pipes/order-pinned-notes.pipe';
+import { TakeNotesComponent } from './notes/components/main/note-display/take-notes/take-notes.component';
 
 @NgModule({
   declarations: [
@@ -26,14 +29,12 @@ import { FormsModule } from '@angular/forms';
     ColorPickerComponent,
     LabelExtractorDirective,
     NoteOptionsComponent,
-    LabelEditorComponent
+    LabelEditorComponent,
+    OrderPinnedNotesPipe,
+    TakeNotesComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, RouterModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

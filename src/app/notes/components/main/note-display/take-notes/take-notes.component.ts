@@ -1,23 +1,15 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  Input,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
-import { Note } from 'src/app/notes/types/note';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { NoteService } from 'src/app/notes/services/note.service';
+import { SharedService } from 'src/app/notes/services/shared.service';
+import { Note } from 'src/app/notes/types/note';
+
 @Component({
-  selector: 'app-note-display',
-  templateUrl: './note-display.component.html',
-  styleUrls: ['./note-display.component.scss'],
+  selector: 'app-take-notes',
+  templateUrl: './take-notes.component.html',
+  styleUrls: ['./take-notes.component.scss'],
 })
-export class NoteDisplayComponent implements OnInit, AfterViewInit {
-  @ViewChild('contents', { static: false }) contents!: ElementRef;
+export class TakeNotesComponent {
   @ViewChild('noteContent', { static: false }) noteContent!: ElementRef;
-  @Input('isGridDisplay') isGridDisplay!: boolean;
-  containerHeight: number = 60 * 16;
   createIconData: any[] = [
     {
       iconClasses: 'fa-regular fa-square-check',
@@ -33,8 +25,7 @@ export class NoteDisplayComponent implements OnInit, AfterViewInit {
     },
     {
       iconClasses: 'fa-regular fa-image',
-      clickAction: () => {
-      },
+      clickAction: () => {},
       iconName: 'New note with image',
       showName: false,
     },
@@ -92,6 +83,7 @@ export class NoteDisplayComponent implements OnInit, AfterViewInit {
     },
   ];
   labels: string[] = [];
+  isGridDisplay: boolean = true;
   isPinned: boolean = false;
   show: boolean = false;
   expand: boolean = false;
@@ -104,24 +96,21 @@ export class NoteDisplayComponent implements OnInit, AfterViewInit {
     content: '',
     editedOn: new Date(),
   };
-  constructor(private noteService: NoteService) {
+  constructor(
+    private noteService: NoteService,
+    private sharedService: SharedService
+  ) {
     this.noteService.notes$.subscribe((notes) => {});
   }
   ngOnInit(): void {
     this.noteService.getNotes().subscribe((notes) => {
       this.notes = notes;
     });
-  }
-  ngAfterViewInit() {
-    this.adjustContainerHeight();
+    this.sharedService.isGridDisplay$.subscribe((isGridDisplay) => {
+      this.isGridDisplay = isGridDisplay;
+    });
   }
 
-  adjustContainerHeight() {
-    const containerElement = this.contents.nativeElement;
-    if (containerElement.scrollHeight > containerElement.clientHeight) {
-      this.containerHeight += 30 * 16;
-    }
-  }
   changeText(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
     this.newNotes.content = value;
@@ -152,9 +141,6 @@ export class NoteDisplayComponent implements OnInit, AfterViewInit {
   }
   pinNote(): void {
     this.isPinned = !this.isPinned;
-  }
-  editNote(): void {
-    this.noteService.editNote(this.newNotes);
   }
   showColorPicker(): void {
     this.show = !this.show;

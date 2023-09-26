@@ -1,7 +1,7 @@
 <div class="single-note"
     [ngStyle]="{backgroundColor: note.backgroundColor,backgroundImage: 'url(' + note.backgroundImage + ')',width: isGridDisplay ? '' : '35rem'}">
     <div class="info">
-        <main class="content">
+        <main class="content" (click)="openNoteDetails()">
             <header>{{note.title}}</header>
             <p>{{note.content.slice(0, 550)}}{{note.content.length > 550 ? "..." : ""}}</p>
             <div *ngIf="note.labels && note.labels.length > 0" class="labels">

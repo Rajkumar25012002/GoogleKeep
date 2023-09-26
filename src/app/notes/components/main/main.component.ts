@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-main',
@@ -6,5 +7,12 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent {
-  @Input('isGridDisplay') isGridDisplay!: boolean;
+  isGridDisplay: boolean=true;
+  constructor(private sharedService: SharedService) {
+  }
+  ngOnInit() {
+    this.sharedService.isGridDisplay$.subscribe((isGridDisplay) => {
+      this.isGridDisplay = isGridDisplay;
+    });
+  }
 }

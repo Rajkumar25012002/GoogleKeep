@@ -1,5 +1,5 @@
 <div class="note-display">
-    <div class="take-note">
+    <!-- <div class="take-note">
         <main [ngStyle]="{backgroundColor: selectedColor,backgroundImage: 'url(' + selectedImage + ')'}">
             <div class="header" *ngIf="expand">
                 <input type="text" name="title" placeholder="Title" [value]="newNotes.title"
@@ -10,9 +10,9 @@
             </div>
             <div class="body">
                 <input type="text" placeholder="Take a note..." *ngIf="!expand" (click)="expandNoteEditor()" />
-                <textarea type="text" #noteContent *ngIf="expand" placeholder="Take a note..." name="content" appLabelExtractor
-                    (labelsChanged)="updateLabels($event)" [value]="newNotes.content" (keyup)="changeText($event)"
-                    (keyup.enter)="addNote()"></textarea>
+                <textarea type="text" #noteContent *ngIf="expand" placeholder="Take a note..." name="content"
+                    appLabelExtractor (labelsChanged)="updateLabels($event)" [value]="newNotes.content"
+                    (keyup)="changeText($event)" (keyup.enter)="addNote()"></textarea>
                 <ng-container *ngIf="!expand">
                     <div class="icon" *ngFor="let item of createIconData">
                         <i [ngClass]="item.iconClasses" (mouseover)="showIconName(item.iconName)"
@@ -36,10 +36,11 @@
             <app-color-picker [show]="show" [(selectedColor)]="selectedColor"
                 [(selectedImage)]="selectedImage"></app-color-picker>
         </div>
-    </div>
+    </div> -->
+    <app-take-notes></app-take-notes>
     <div class="contents" #contents [style.height.px]="containerHeight"
         [ngStyle]="{flexDirection: isGridDisplay ? 'row' : 'column',height:isGridDisplay ? '' : 'auto'}">
-        <div *ngFor="let note of notes" class="content">
+        <div *ngFor="let note of notes | orderPinnedNotes" class="content">
             <app-single-note [note]="note" [isGridDisplay]="isGridDisplay"></app-single-note>
         </div>
     </div>
