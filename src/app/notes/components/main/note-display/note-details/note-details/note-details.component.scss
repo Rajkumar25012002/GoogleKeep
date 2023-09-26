@@ -13,7 +13,6 @@
     &>.single-note {
         display: flex;
         flex-direction: column;
-        border: 1px solid rgb(95, 99, 104);
         border-radius: 0.25rem;
         width: 40rem;
         max-height: 30rem;
@@ -111,6 +110,7 @@
             align-items: center;
             position: relative;
             box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+
             &>.icon {
                 &>.name {
                     position: absolute;

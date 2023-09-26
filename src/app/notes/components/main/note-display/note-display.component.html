@@ -1,42 +1,4 @@
 <div class="note-display">
-    <!-- <div class="take-note">
-        <main [ngStyle]="{backgroundColor: selectedColor,backgroundImage: 'url(' + selectedImage + ')'}">
-            <div class="header" *ngIf="expand">
-                <input type="text" name="title" placeholder="Title" [value]="newNotes.title"
-                    (keyup)="changeTitle($event)" />
-                <div class="icon" (click)="pinNote()">
-                    <i class="fa-solid fa-thumbtack" [ngStyle]="{color: isPinned ? 'rgb(251,188,4)' : ''}"></i>
-                </div>
-            </div>
-            <div class="body">
-                <input type="text" placeholder="Take a note..." *ngIf="!expand" (click)="expandNoteEditor()" />
-                <textarea type="text" #noteContent *ngIf="expand" placeholder="Take a note..." name="content"
-                    appLabelExtractor (labelsChanged)="updateLabels($event)" [value]="newNotes.content"
-                    (keyup)="changeText($event)" (keyup.enter)="addNote()"></textarea>
-                <ng-container *ngIf="!expand">
-                    <div class="icon" *ngFor="let item of createIconData">
-                        <i [ngClass]="item.iconClasses" (mouseover)="showIconName(item.iconName)"
-                            (mouseout)="hideIconName()" (click)="item.clickAction()">
-                        </i>
-                        <p *ngIf="item.showName" class="name">{{item.iconName}}</p>
-                    </div>
-                </ng-container>
-            </div>
-        </main>
-        <div class="footer" *ngIf="expand" [ngStyle]="{backgroundColor: selectedColor}">
-            <div class="icon" *ngFor="let item of noteIconData">
-                <i [ngClass]="item.iconClasses" (mouseover)="showIconName(item.iconName)" (mouseout)="hideIconName()"
-                    (click)="item.clickAction()">
-                </i>
-                <p *ngIf="item.showName" class="name">{{item.iconName}}</p>
-            </div>
-            <button (click)="expandNoteEditor()">Close</button>
-        </div>
-        <div class="color-picker" (click)="showColorPicker()">
-            <app-color-picker [show]="show" [(selectedColor)]="selectedColor"
-                [(selectedImage)]="selectedImage"></app-color-picker>
-        </div>
-    </div> -->
     <app-take-notes></app-take-notes>
     <div class="contents" #contents [style.height.px]="containerHeight"
         [ngStyle]="{flexDirection: isGridDisplay ? 'row' : 'column',height:isGridDisplay ? '' : 'auto'}">

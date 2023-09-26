@@ -39,13 +39,13 @@ updateLabelIconData(titles: string[]): void {
 generateGeneralIconData(): void {
   this.generalIconData = [
     {
-      iconClasses: 'fa-regular fa-bell',
+      iconClasses: 'fa-regular fa-lightbulb',
       clickAction: () => {},
       iconName: 'Notes',
       routerLink: '/',
     },
     {
-      iconClasses: 'fa-solid fa-tag',
+      iconClasses: 'fa-solid fa-bell',
       clickAction: () => {},
       iconName: 'Remainders',
       routerLink: '/remainders',
@@ -55,7 +55,7 @@ generateGeneralIconData(): void {
       iconClasses: 'fa-solid fa-pencil',
       clickAction: () => {},
       iconName: 'Edit labels',
-      routerLink: '/labels',
+      routerLink: '/edit/labels',
     },
     {
       iconClasses: 'fa-solid fa-file-export',
