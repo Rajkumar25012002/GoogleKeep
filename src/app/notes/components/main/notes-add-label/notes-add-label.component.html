@@ -1,0 +1,35 @@
+<div class="popup-background">
+    <div class="edit-labels">
+        <h4>Edit labels</h4>
+        <div class="create-label">
+            <div class="icon" (click)="toggleCreateLabel()">
+                <i class="fa-solid fa-plus" *ngIf="!isCreatable"></i>
+                <i class="fa-solid fa-x" *ngIf="isCreatable"></i>
+            </div>
+            <input type="text" placeholder="Create label" (focus)="isCreatable=true" (keyup.enter)="addLabel()"
+                [(ngModel)]="createdLabelName"
+                [ngStyle]="{borderBottom: isCreatable ? '1px solid rgba(95, 99, 104, 0.714)' : 'none'}">
+            <div class="icon" *ngIf="isCreatable">
+                <i class="fa-solid fa-check" (click)="addLabel()"></i>
+            </div>
+        </div>
+        <div class="labels-list">
+            <div class="label" *ngFor="let item of labels, let i = index">
+                <div class="icon" (mouseenter)="showTrashIcon(item.label)" (mouseleave)="hideTrashIcon(item.label)">
+                    <i class="fa-solid fa-hashtag" *ngIf="!item.showTrash && !item.isEditable"></i>
+                    <i class="fa-solid fa-trash" *ngIf="item.showTrash || item.isEditable"
+                        (click)="deleteLabel(item.label)"></i>
+                </div>
+                <input type="text" (focus)="item.isEditable=true" [value]="item.label" (change)="changeLabel($event)"
+                    (keyup.enter)="toggleEditable(item.label)"
+                    [ngStyle]="{borderBottom: item.isEditable ? '1px solid rgba(95, 99, 104, 0.714)' : 'none'}" />
+                <div class="icon">
+                    <i class="fa-solid fa-pencil" *ngIf="!item.isEditable" (click)="toggleEditable(item.label)"></i>
+                    <i class="fa-solid fa-check" *ngIf="item.isEditable" (click)="toggleEditable(item.label)"></i>
+                </div>
+            </div>
+        </div>
+
+        <button (click)="done()">Done</button>
+    </div>
+</div>

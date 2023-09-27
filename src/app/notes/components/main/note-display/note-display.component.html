@@ -2,8 +2,9 @@
     <app-take-notes></app-take-notes>
     <div class="contents" #contents [style.height.px]="containerHeight"
         [ngStyle]="{flexDirection: isGridDisplay ? 'row' : 'column',height:isGridDisplay ? '' : 'auto'}">
-        <div *ngFor="let note of notes | orderPinnedNotes" class="content">
+        <div *ngFor="let note of notes | filterNotesLabel:label | orderPinnedNotes " class="content">
             <app-single-note [note]="note" [isGridDisplay]="isGridDisplay"></app-single-note>
         </div>
     </div>
 </div>
+<router-outlet></router-outlet>

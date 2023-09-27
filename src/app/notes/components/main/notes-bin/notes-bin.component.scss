@@ -1,0 +1,152 @@
+.note-display {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    height: 40rem;
+    gap: 1rem;
+    overflow-y: auto;
+    align-items: center;
+
+    &::-webkit-scrollbar {
+        width: 0.5rem;
+
+        &-thumb {
+            background-color: rgb(108, 108, 108);
+            border-radius: 1rem;
+        }
+    }
+
+    &>span {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        &>p {
+            font-style: italic;
+        }
+
+        &>button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            border-radius: 0.25rem;
+            color: rgb(138, 180, 248);
+            font-weight: 600;
+            padding: 0.5rem;
+
+            &:hover {
+                background-color: rgb(36, 39, 45);
+            }
+        }
+
+    }
+
+    .contents {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-left: 5rem;
+        padding: 1rem;
+        height: auto;
+
+        .content {
+            .single-note {
+                display: flex;
+                flex-direction: column;
+                border: 1px solid rgb(95, 99, 104);
+                border-radius: 0.25rem;
+                width: 15rem;
+                max-height: 30rem;
+                min-height: 5rem;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+
+                &:hover {
+
+                    &>.info,
+                    footer {
+                        .icon {
+                            opacity: 1
+                        }
+                    }
+                }
+
+                .icon {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: 2.5rem;
+                    cursor: pointer;
+                    width: 2.5rem;
+                    border-radius: 50%;
+                    opacity: 0;
+                    transition: opacity 0.3s;
+
+                    &>i {
+                        font-size: medium;
+                    }
+
+                    &:hover {
+                        background-color: rgba(84, 84, 84, 0.245);
+                    }
+                }
+
+                &>.info {
+                    display: flex;
+                    width: 100%;
+                    padding: 0.5rem;
+
+                    &>main {
+                        width: 100%;
+                        max-height: 20rem;
+                        overflow: hidden;
+
+                        &>header {
+                            width: 12rem;
+                            color: rgb(204, 204, 204);
+                            font-weight: bold;
+                            margin-bottom: 5px;
+                            text-align: justify;
+                        }
+                    }
+                }
+
+                &>.labels {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 0.5rem;
+                    padding: 0 0.25rem;
+
+                    &>p {
+                        font-size: small;
+                        border: 1px solid rgb(179, 179, 179);
+                        padding: 0.25rem;
+                        border-radius: 0.5rem;
+                    }
+                }
+
+                &>footer {
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+
+                    .icon {
+                        .name {
+                            position: absolute;
+                            width: max-content;
+                            padding: 0.15rem;
+                            border-radius: 0.25rem;
+                            bottom: -1rem;
+                            text-align: center;
+                            font-size: small;
+                            background-color: rgba(82, 83, 85, 0.67);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

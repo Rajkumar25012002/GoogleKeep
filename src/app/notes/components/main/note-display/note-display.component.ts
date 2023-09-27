@@ -28,11 +28,9 @@ export class NoteDisplayComponent implements OnInit, AfterViewInit {
     this.noteService.notes$.subscribe((notes) => {});
   }
   ngOnInit(): void {
-    this.noteService.notes$.subscribe((notes) => {
-      this.notes = notes.map((note) => {
-        return { ...note };
-      });
-    });
+    this.noteService.getNotes().subscribe((notes) => {
+      this.notes = notes;
+    })
     this.sharedService.isGridDisplay$.subscribe((isGridDisplay) => {
       this.isGridDisplay = isGridDisplay;
     });

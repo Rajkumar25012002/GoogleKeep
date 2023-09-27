@@ -1,22 +1,23 @@
 <div class="popup-background" *ngIf="note!=undefined">
-    <div class="single-note"
-        [ngStyle]="{backgroundColor: note.backgroundColor,backgroundImage: 'url(' + note.backgroundImage + ')'}">
-        <div class="info">
-            <main class="note-content">
-                <header>{{note.title}}</header>
-                <textarea #textcontent type="text" [(ngModel)]="note.content"
-                    (input)="adjustTextareaHeight(textcontent)"></textarea>
+    <div class="single-note">
+        <main [ngStyle]="{backgroundColor: note.backgroundColor,backgroundImage: 'url(' + note.backgroundImage + ')'}">
+            <div class="info">
+                <main class="note-content">
+                    <header>{{note.title}}</header>
+                    <textarea #textcontent type="text" [(ngModel)]="note.content"
+                        (input)="adjustTextareaHeight(textcontent)"></textarea>
 
-            </main>
-            <div class="icon" (click)="pinNote()">
-                <i class="fa-solid fa-thumbtack" [ngStyle]="{color: note.isPinned ? 'rgb(251,188,4)' : ''}"></i>
+                </main>
+                <div class="icon" (click)="pinNote()">
+                    <i class="fa-solid fa-thumbtack" [ngStyle]="{color: note.isPinned ? 'rgb(251,188,4)' : ''}"></i>
+                </div>
             </div>
-        </div>
-        <div *ngIf="note.labels && note.labels.length > 0" class="labels">
-            <p *ngFor="let item of note.labels">{{item}}</p>
-        </div>
-        <p class="edited-on">{{note.editedOn | date:"dd-MMM-yyyy hh:mm"}}</p>
-        <footer>
+            <div *ngIf="note.labels && note.labels.length > 0" class="labels">
+                <p *ngFor="let item of note.labels">{{item}}</p>
+            </div>
+            <p class="edited-on">{{note.editedOn | date:"dd-MMM-yyyy hh:mm"}}</p>
+        </main>
+        <footer [ngStyle]="{backgroundColor: note.backgroundColor}">
             <div class="icon" *ngFor="let item of iconData">
                 <i [ngClass]="item.iconClasses" (mouseover)="showIconName(item.iconName)" (mouseout)="hideIconName()"
                     (click)="item.clickAction()">

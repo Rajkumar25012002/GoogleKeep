@@ -19,9 +19,7 @@
         z-index: 3;
         background-color: rgb(32, 33, 36);
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
+
 
         .icon {
             display: flex;
@@ -42,67 +40,73 @@
             }
         }
 
-        &>.info {
-            display: flex;
-            width: 100%;
-            padding: 0.5rem;
-            max-height: 20rem;
-            overflow-y: auto;
+        &>main {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
 
-            &::-webkit-scrollbar {
-                width: 0.5rem;
-
-                &-thumb {
-                    background-color: rgb(108, 108, 108);
-                }
-            }
-
-            &>.note-content {
+            &>.info {
+                display: flex;
                 width: 100%;
-                height: max-content;
+                padding: 0.5rem;
+                max-height: 20rem;
+                overflow-y: auto;
 
-                &>header {
-                    width: 100%;
-                    color: rgb(204, 204, 204);
-                    font-weight: bold;
-                    margin-bottom: 5px;
-                    text-align: justify;
+                &::-webkit-scrollbar {
+                    width: 0.5rem;
+
+                    &-thumb {
+                        background-color: rgb(108, 108, 108);
+                    }
                 }
 
-                &>textarea {
-                    box-sizing: border-box;
-                    background-color: transparent;
-                    border: none;
+                &>.note-content {
                     width: 100%;
-                    height: auto;
-                    outline: none;
-                    resize: none;
-                    white-space: pre-line;
+                    height: max-content;
+
+                    &>header {
+                        width: 100%;
+                        color: rgb(204, 204, 204);
+                        font-weight: bold;
+                        margin-bottom: 5px;
+                        text-align: justify;
+                    }
+
+                    &>textarea {
+                        box-sizing: border-box;
+                        background-color: transparent;
+                        border: none;
+                        width: 100%;
+                        height: auto;
+                        outline: none;
+                        resize: none;
+                        white-space: pre-line;
+                    }
                 }
             }
-        }
 
-        &>.labels {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            padding: 0 0.25rem;
+            &>.labels {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                padding: 0 0.25rem;
 
-            &>p {
-                font-size: small;
-                border: 1px solid rgb(179, 179, 179);
+                &>p {
+                    font-size: small;
+                    border: 1px solid rgb(179, 179, 179);
+                    padding: 0.25rem;
+                    border-radius: 0.5rem;
+                }
+            }
+
+            &>.edited-on {
                 padding: 0.25rem;
-                border-radius: 0.5rem;
+                text-align: right;
+                width: 100%;
+                color: rgb(137, 137, 137);
+                font-size: small;
+                font-style: italic;
             }
-        }
-
-        &>.edited-on {
-            padding: 0.25rem;
-            text-align: right;
-            width: 100%;
-            color: rgb(137, 137, 137);
-            font-size: small;
-            font-style: italic;
         }
 
         &>footer {

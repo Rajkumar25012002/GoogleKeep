@@ -74,7 +74,9 @@ export class NoteDetailsComponent implements OnInit, AfterViewInit {
     },
     {
       iconClasses: 'fa-solid fa-file-export',
-      clickAction: () => {},
+      clickAction: () => {
+        this.archieveNote();
+      },
       iconName: 'Archieve',
       showName: false,
     },
@@ -123,6 +125,14 @@ export class NoteDetailsComponent implements OnInit, AfterViewInit {
   pinNote() {
     this.noteService.pinNote(this.note.id);
   }
+  archieveNote(): void {
+    this.noteService.archieveNote(this.note.id);
+  }
+  deleteNote(): void {
+    this.isOptionsMenuVisible = false;
+    this.noteService.moveNoteToBin(this.note.id);
+    this.router.navigate(['']);
+  }
   toggleOptionsMenu() {
     this.isOptionsMenuVisible = !this.isOptionsMenuVisible;
     this.isLabelEditorVisible = false;
@@ -131,11 +141,6 @@ export class NoteDetailsComponent implements OnInit, AfterViewInit {
   changeLabel(): void {
     this.isOptionsMenuVisible = false;
     this.isLabelEditorVisible = !this.isLabelEditorVisible;
-  }
-
-  deleteNote(): void {
-    this.isOptionsMenuVisible = false;
-    this.noteService.deleteNote(this.note.id);
   }
 
   makeCopy(): void {

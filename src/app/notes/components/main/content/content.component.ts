@@ -17,20 +17,20 @@ generalIconData: any[] = [];
 
 ngOnInit(): void {
   this.generateGeneralIconData();
-  this.noteService.getTitles().subscribe((titles: string[]) => {
-    this.updateLabelIconData(titles);
-  });
+  this.noteService.getAllLabels().subscribe((labels) => {
+    this.updateLabelIconData(labels);
+  })
 }
 
-updateLabelIconData(titles: string[]): void {
+updateLabelIconData(labels: string[]): void {
   this.labelIconData = [];
-  titles.forEach((title) => {
+  labels.forEach((label) => {
     this.labelIconData.push({
       iconClasses: 'fa-solid fa-tag',
       clickAction: () => {},
-      iconName: title,
+      iconName: label,
       showName: true,
-      routerLink: `labels/${title}`,
+      routerLink: `/labels/${label}`,
     });
   });
   this.generateGeneralIconData();

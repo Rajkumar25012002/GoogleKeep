@@ -59,7 +59,9 @@ export class TakeNotesComponent {
     },
     {
       iconClasses: 'fa-solid fa-file-export',
-      clickAction: () => {},
+      clickAction: () => {
+        this.archieveNote();
+      },
       iconName: 'Archieve',
       showName: false,
     },
@@ -94,7 +96,14 @@ export class TakeNotesComponent {
     id: Math.random().toString(10),
     title: '',
     content: '',
+    backgroundColor: '',
+    backgroundImage: '',
     editedOn: new Date(),
+    labels: [],
+    isPinned: false,
+    isArchived: false,
+    isEdited: false,
+    isDeleted: false,
   };
   constructor(
     private noteService: NoteService,
@@ -134,13 +143,20 @@ export class TakeNotesComponent {
       content: '',
       backgroundColor: '',
       backgroundImage: '',
-      isPinned: false,
       editedOn: new Date(),
+      labels: [],
+      isPinned: false,
+      isArchived: false,
+      isEdited: false,
+      isDeleted: false,
     };
     (this.selectedColor = ''), (this.selectedImage = '');
   }
   pinNote(): void {
     this.isPinned = !this.isPinned;
+  }
+  archieveNote(): void {
+    this.newNotes.isArchived = !this.newNotes.isArchived;
   }
   showColorPicker(): void {
     this.show = !this.show;

@@ -1,0 +1,27 @@
+.note-display {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    height: 40rem;
+    gap: 1rem;
+    overflow-y: auto;
+    align-items: center;
+
+    &::-webkit-scrollbar {
+        width: 0.5rem;
+
+        &-thumb {
+            background-color: rgb(108, 108, 108);
+        }
+    }
+
+    &>.contents {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-left: 5rem;
+        padding: 1rem;
+        height: 60rem;
+
+    }
+}

@@ -9,4 +9,5 @@ export interface Note{
     labels?: string[],
     isArchived?: boolean,
     isEdited?: boolean,
+    isDeleted?:boolean
 }

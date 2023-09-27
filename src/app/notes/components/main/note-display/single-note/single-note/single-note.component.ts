@@ -13,7 +13,14 @@ import { Router } from '@angular/router';
 export class SingleNoteComponent {
   @Input('note') note!: Note;
   @Input('isGridDisplay') isGridDisplay!: boolean;
-  constructor(private noteService: NoteService,private router:Router) {}
+  constructor(private noteService: NoteService, private router: Router) {}
+  ngOnInit(): void {
+    this.iconData.map((icon) => {
+      if (icon.iconName === 'Archieve') {
+        icon.iconName = this.note.isArchived ? 'UnArchieve' : 'Archieve';
+      }
+    });
+  }
   show: boolean = false;
   isOptionsMenuVisible: boolean = false;
   isLabelEditorVisible: boolean = false;
@@ -48,7 +55,9 @@ export class SingleNoteComponent {
     },
     {
       iconClasses: 'fa-solid fa-file-export',
-      clickAction: () => {},
+      clickAction: () => {
+        this.archieveNote();
+      },
       iconName: 'Archieve',
       showName: false,
     },
@@ -85,6 +94,9 @@ export class SingleNoteComponent {
   pinNote() {
     this.noteService.pinNote(this.note.id);
   }
+  archieveNote(): void {
+    this.noteService.archieveNote(this.note.id);
+  }
   toggleOptionsMenu() {
     this.isOptionsMenuVisible = !this.isOptionsMenuVisible;
     this.isLabelEditorVisible = false;
@@ -97,14 +109,14 @@ export class SingleNoteComponent {
 
   deleteNote(): void {
     this.isOptionsMenuVisible = false;
-    this.noteService.deleteNote(this.note.id);
+    this.noteService.moveNoteToBin(this.note.id);
   }
 
   makeCopy(): void {
     this.isOptionsMenuVisible = false;
     this.noteService.addCopy(this.note);
   }
-  openNoteDetails():void {
+  openNoteDetails(): void {
     this.router.navigate([`/note/${this.note.id}`]);
   }
 }

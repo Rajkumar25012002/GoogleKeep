@@ -1,0 +1,34 @@
+<div class="note-display">
+    <span>
+        <p>Notes in the Bin are deleted after 7 days</p>
+        <button (click)="emptyBin()">Empty bin</button>
+    </span>
+    <div class="contents"
+        [ngStyle]="{flexDirection: isGridDisplay ? 'row' : 'column',height:isGridDisplay ? '' : 'auto'}">
+        <div *ngFor="let note of notes" class="content">
+            <div class="single-note"
+                [ngStyle]="{backgroundColor: note.backgroundColor,backgroundImage: 'url(' + note.backgroundImage + ')',width: isGridDisplay ? '' : '35rem'}">
+                <div class="info">
+                    <main class="content">
+                        <header>{{note.title}}</header>
+                        <p>{{note.content.slice(0, 550)}}{{note.content.length > 550 ? "..." : ""}}</p>
+                        <div *ngIf="note.labels && note.labels.length > 0" class="labels">
+                            <p *ngFor="let item of note.labels">{{item}}</p>
+                        </div>
+                    </main>
+                </div>
+                <div *ngIf="note.labels && note.labels.length > 0" class="labels">
+                    <p *ngFor="let item of note.labels">{{item}}</p>
+                </div>
+                <footer>
+                    <div class="icon" *ngFor="let item of iconData">
+                        <i [ngClass]="item.iconClasses" (mouseover)="showIconName(item.iconName)"
+                            (mouseout)="hideIconName()" (click)="item.clickAction(note.id)">
+                        </i>
+                        <p *ngIf="item.showName" class="name">{{item.iconName}}</p>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+</div>

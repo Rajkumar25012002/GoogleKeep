@@ -49,6 +49,7 @@
             width: 100%;
             max-height: 20rem;
             overflow: hidden;
+
             &>header {
                 width: 12rem;
                 color: rgb(204, 204, 204);
@@ -57,18 +58,22 @@
                 text-align: justify;
             }
 
-            .labels {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 0.5rem;
 
-                &>p {
-                    font-size: small;
-                    border: 1px solid rgb(179, 179, 179);
-                    padding: 0.25rem;
-                    border-radius: 0.5rem;
-                }
-            }
+        }
+
+    }
+
+    &>.labels {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding: 0 0.25rem;
+
+        &>p,span {
+            font-size: small;
+            border: 1px solid rgb(179, 179, 179);
+            padding: 0.25rem;
+            border-radius: 0.5rem;
         }
     }
 
@@ -89,18 +94,21 @@
                 background-color: rgba(82, 83, 85, 0.67);
             }
         }
-        &>.options{
+
+        &>.options {
             position: absolute;
             bottom: 1.5rem;
             right: 0;
         }
-        &>.label-editor-component{
+
+        &>.label-editor-component {
             position: absolute;
             bottom: 2rem;
             right: -1rem;
-            background-color: rgb(32,33,36);
+            background-color: rgb(32, 33, 36);
             z-index: 1;
         }
+
         &>.color-picker {
             position: absolute;
             align-self: center;

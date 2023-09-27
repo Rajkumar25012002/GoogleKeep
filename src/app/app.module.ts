@@ -16,6 +16,10 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { OrderPinnedNotesPipe } from './notes/pipes/order-pinned-notes.pipe';
 import { TakeNotesComponent } from './notes/components/main/note-display/take-notes/take-notes.component';
+import { FilterNotesLabelPipe } from './notes/pipes/filter-notes-label.pipe';
+import { NotesBinComponent } from './notes/components/main/notes-bin/notes-bin.component';
+import { NotesArchievedComponent } from './notes/components/main/notes-archieved/notes-archieved.component';
+import { NotesAddLabelComponent } from './notes/components/main/notes-add-label/notes-add-label.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +36,10 @@ import { TakeNotesComponent } from './notes/components/main/note-display/take-no
     LabelEditorComponent,
     OrderPinnedNotesPipe,
     TakeNotesComponent,
+    FilterNotesLabelPipe,
+    NotesBinComponent,
+    NotesArchievedComponent,
+    NotesAddLabelComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, RouterModule],
   providers: [],
