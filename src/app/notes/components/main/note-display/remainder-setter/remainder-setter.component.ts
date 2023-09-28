@@ -43,11 +43,10 @@ export class RemainderSetterComponent {
   }
   save(): void {
     this.toggleSelectDatetime();
+    this.remainderChange.emit(this.remainder);
     this.showRemainderChange.emit(!this.showRemainder);
   }
-  setRemainder(): void {
-    this.remainderChange.emit(this.remainder);
-  }
+
   setRemainderTomorrow(): void {
     this.remainder.date = new Date(
       new Date().setDate(new Date().getDate() + 1)

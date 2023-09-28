@@ -43,6 +43,13 @@ export class NoteService {
       )
     );
   }
+  getAllRemainderNotes(): Observable<Note[]> {
+    return this.notes$.pipe(
+      map((notes: Note[]) =>
+        notes.filter((note: Note) => !note.isArchived && !note.isDeleted && note.remainder?.date)
+      )
+    );
+  }
   getNoteById(id: string | null): Observable<Note | undefined> {
     return this.notes$.pipe(
       map((notes: Note[]) => notes.find((note: Note) => note.id === id))

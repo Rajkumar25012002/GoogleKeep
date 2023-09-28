@@ -21,7 +21,7 @@
         </header>
         <mat-form-field class="example-full-width">
             <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker" [(ngModel)]="remainder.date" (dateChange)="setRemainder()">
+            <input matInput [matDatepicker]="picker" [(ngModel)]="remainder.date">
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker">
                 <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
@@ -30,7 +30,7 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>Select time</mat-label>
-            <mat-select #fontSize [(value)]="remainder.time" (selectionChange)="setRemainder()">
+            <mat-select #fontSize [(value)]="remainder.time">
                 <mat-option value="8:00">Morning 8:00</mat-option>
                 <mat-option value="13:00">Afternoon 13:00</mat-option>
                 <mat-option value="18:00">Evening 18:00</mat-option>
@@ -39,7 +39,7 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>Repeat</mat-label>
-            <mat-select #fontSize [(value)]="remainder.repeat" (selectionChange)="setRemainder()">
+            <mat-select #fontSize [(value)]="remainder.repeat">
                 <mat-option value="No">Doesn't repeat</mat-option>
                 <mat-option value="Daily">Daily</mat-option>
                 <mat-option value="Weekly">Weekly</mat-option>
