@@ -1,11 +1,11 @@
 <div class="remainder" *ngIf="showRemainder">
     <ng-container *ngIf="!selectDatetime">
         <p class="header">Remainder</p>
-        <div class="set-today">
+        <div class="set-today" (click)="setRemainderTomorrow()">
             <p>Tomorrow</p>
             <p>08:00</p>
         </div>
-        <div class="set-nextweek">
+        <div class="set-nextweek" (click)="setRemainderNextWeek()">
             <p>Next week</p>
             <p>08:00</p>
         </div>
@@ -21,7 +21,7 @@
         </header>
         <mat-form-field class="example-full-width">
             <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker">
+            <input matInput [matDatepicker]="picker" [(ngModel)]="remainder.date" (dateChange)="setRemainder()">
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker">
                 <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
@@ -30,11 +30,21 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>Select time</mat-label>
-            <mat-select #fontSize value="" (selectionChange)={}>
+            <mat-select #fontSize [(value)]="remainder.time" (selectionChange)="setRemainder()">
                 <mat-option value="8:00">Morning 8:00</mat-option>
                 <mat-option value="13:00">Afternoon 13:00</mat-option>
                 <mat-option value="18:00">Evening 18:00</mat-option>
                 <mat-option value="20:00">Night 20:00</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Repeat</mat-label>
+            <mat-select #fontSize [(value)]="remainder.repeat" (selectionChange)="setRemainder()">
+                <mat-option value="No">Doesn't repeat</mat-option>
+                <mat-option value="Daily">Daily</mat-option>
+                <mat-option value="Weekly">Weekly</mat-option>
+                <mat-option value="Monthly">Monthly</mat-option>
+                <mat-option value="Yearly">Yearly</mat-option>
             </mat-select>
         </mat-form-field>
         <button (click)="save()">Save</button>

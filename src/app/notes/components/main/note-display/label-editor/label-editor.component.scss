@@ -5,7 +5,9 @@
     gap: 0.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     padding: 0.5rem;
-
+    p{
+        margin: 0;
+    }
     &>.header {
         font-weight: 500;
     }

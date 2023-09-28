@@ -21,6 +21,15 @@
             </span>
         </ng-container>
     </div>
+    <div class="remainder" *ngIf="note.remainder?.date" (mouseover)="displayRemainder()" (mouseout)="hideRemainder()">
+        <i class="fa-solid fa-clock"></i>
+        <p>{{ note.remainder?.date | date: 'dd MMM' }}
+            ,{{ editRemainder ? note.remainder?.time?.slice(0, 2) : note.remainder?.time }}</p>
+        <p [ngStyle]="{display: editRemainder ? 'block' : 'none'}">...</p>
+        <i class="fa-solid fa-xmark" [ngStyle]="{display: editRemainder ? 'block' : 'none'}"
+            (click)="deleteRemainder()"></i>
+    </div>
+
     <footer>
         <div class="icon" *ngFor="let item of iconData">
             <i [ngClass]="item.iconClasses" (mouseover)="showIconName(item.iconName)" (mouseout)="hideIconName()"
@@ -38,7 +47,8 @@
                 [(selectedImage)]="selectedImage"></app-color-picker>
         </div>
         <div class="remainder-setter" *ngIf="showRemainder">
-            <app-remainder-setter [(showRemainder)]="showRemainder"></app-remainder-setter>
+            <app-remainder-setter [(showRemainder)]="showRemainder"
+                (remainderChange)="remainderSet($event)"></app-remainder-setter>
         </div>
     </footer>
 

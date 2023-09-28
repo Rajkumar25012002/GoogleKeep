@@ -4,8 +4,8 @@
             <div class="info">
                 <main class="note-content">
                     <header>{{note.title}}</header>
-                    <textarea #textcontent type="text" [(ngModel)]="note.content"  appLabelExtractor (labelsChanged)="updateLabels($event)"
-                        (input)="adjustTextareaHeight(textcontent)"></textarea>
+                    <textarea #textcontent type="text" [(ngModel)]="note.content" appLabelExtractor
+                        (labelsChanged)="updateLabels($event)" (input)="adjustTextareaHeight(textcontent)"></textarea>
 
                 </main>
                 <div class="icon" (click)="pinNote()">
@@ -16,6 +16,15 @@
                 <p *ngFor="let item of note.labels">{{item}}</p>
             </div>
             <p class="edited-on">{{note.editedOn | date:"dd-MMM-yyyy hh:mm"}}</p>
+            <div class="remainder" *ngIf="note.remainder?.date" (mouseover)="displayRemainder()"
+                (mouseout)="hideRemainder()">
+                <i class="fa-solid fa-clock"></i>
+                <p>{{ note.remainder?.date | date: 'dd MMM' }}
+                    ,{{ editRemainder ? note.remainder?.time?.slice(0, 2) : note.remainder?.time }}</p>
+                <p [ngStyle]="{display: editRemainder ? 'block' : 'none'}">...</p>
+                <i class="fa-solid fa-xmark" [ngStyle]="{display: editRemainder ? 'block' : 'none'}"
+                    (click)="deleteRemainder()"></i>
+            </div>
         </main>
         <footer [ngStyle]="{backgroundColor: note.backgroundColor}">
             <div class="icon" *ngFor="let item of iconData">
@@ -35,7 +44,8 @@
                     [(selectedImage)]="selectedImage"></app-color-picker>
             </div>
             <div class="remainder-setter" *ngIf="showRemainder">
-                <app-remainder-setter [(showRemainder)]="showRemainder"></app-remainder-setter>
+                <app-remainder-setter [(showRemainder)]="showRemainder"
+                    (remainderChange)="remainderSet($event)"></app-remainder-setter>
             </div>
         </footer>
     </div>

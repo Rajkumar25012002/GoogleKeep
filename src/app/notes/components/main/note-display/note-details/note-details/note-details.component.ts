@@ -1,4 +1,4 @@
-import { Note } from 'src/app/notes/types/note';
+import { Note, Remainder } from 'src/app/notes/types/note';
 import { DatePipe } from '@angular/common';
 import {
   Component,
@@ -46,6 +46,7 @@ export class NoteDetailsComponent implements OnInit, AfterViewInit {
   isLabelEditorVisible: boolean = false;
   selectedColor: string = 'transparent';
   selectedImage: string = '';
+  editRemainder: boolean = false;
   iconData = [
     {
       iconClasses: 'fa-solid fa-bell',
@@ -114,8 +115,20 @@ export class NoteDetailsComponent implements OnInit, AfterViewInit {
     }
     this.show = !this.show;
   }
+  displayRemainder(): void {
+    this.editRemainder=true
+  }
+  hideRemainder(): void {
+    this.editRemainder=false
+  }
   showRemainderSetter(): void {
     this.showRemainder = !this.showRemainder;
+  }
+  deleteRemainder(): void {
+    this.noteService.deleteRemainder(this.note.id);
+  }
+  remainderSet(remainder:Remainder):void{
+    this.noteService.setRemainderForNote(this.note.id, remainder);
   }
   showIconName(iconName: string): void {
     this.iconData.map((icon) => {
@@ -123,7 +136,6 @@ export class NoteDetailsComponent implements OnInit, AfterViewInit {
     });
   }
   updateLabels(newLabels: string[]): void {
-    // this.note.labels = newLabels;
     this.noteService.updateLabelForNote(this.note.id, newLabels);
   }
   hideIconName(): void {

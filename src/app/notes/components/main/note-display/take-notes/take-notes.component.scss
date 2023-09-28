@@ -118,10 +118,32 @@
         align-self: center;
         bottom: -6rem;
     }
-    .remainder-setter{
+
+    .remainder-setter {
         position: absolute;
         align-self: center;
         bottom: -10rem;
         z-index: 4;
+    }
+
+    &>.options {
+        position: absolute;
+        bottom: 1.5rem;
+        align-self: center;
+        display: flex;
+        z-index: 3;
+        cursor: pointer;
+        flex-direction: column;
+        border-radius: 0.25rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        padding: 0.5rem;
+    }
+
+    &>.label-editor-component {
+        position: absolute;
+        bottom: 2rem;
+        align-self: center;
+        background-color: rgb(32, 33, 36);
+        z-index: 5;
     }
 }

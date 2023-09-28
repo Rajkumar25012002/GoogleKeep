@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Note } from 'src/app/notes/types/note';
+import { Note, Remainder } from 'src/app/notes/types/note';
 import { DatePipe } from '@angular/common';
 import { NoteService } from 'src/app/notes/services/note.service';
 import { Router } from '@angular/router';
@@ -23,6 +23,7 @@ export class SingleNoteComponent {
   }
   show: boolean = false;
   showRemainder: boolean = false;
+  editRemainder: boolean = false;
   isOptionsMenuVisible: boolean = false;
   isLabelEditorVisible: boolean = false;
   selectedColor: string = 'transparent';
@@ -112,7 +113,19 @@ export class SingleNoteComponent {
     this.isOptionsMenuVisible = false;
     this.isLabelEditorVisible = !this.isLabelEditorVisible;
   }
+  deleteRemainder(): void {
+    this.noteService.deleteRemainder(this.note.id);
+  }
+  displayRemainder(): void {
+      this.editRemainder = true;
 
+  }
+  remainderSet(remainder:Remainder): void {
+    this.noteService.setRemainderForNote(this.note.id, remainder);
+  }
+  hideRemainder(): void {
+      this.editRemainder = false;
+  }
   deleteNote(): void {
     this.isOptionsMenuVisible = false;
     this.noteService.moveNoteToBin(this.note.id);

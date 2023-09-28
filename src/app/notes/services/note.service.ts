@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Note } from '../types/note';
+import { Note, Remainder } from '../types/note';
 import { Observable, BehaviorSubject, map } from 'rxjs';
 @Injectable({
   providedIn: 'root',
@@ -38,7 +38,9 @@ export class NoteService {
   }
   getAllArchievedNotes(): Observable<Note[]> {
     return this.notes$.pipe(
-      map((notes: Note[]) => notes.filter((note: Note) => note.isArchived))
+      map((notes: Note[]) =>
+        notes.filter((note: Note) => note.isArchived && !note.isDeleted)
+      )
     );
   }
   getNoteById(id: string | null): Observable<Note | undefined> {
@@ -64,6 +66,30 @@ export class NoteService {
         }
         return labelName;
       })
+    );
+  }
+  deleteRemainder(noteId: string): void {
+    this.noteSubject$.next(
+      this.noteSubject$.getValue().map((note) =>
+        note.id === noteId
+          ? {
+              ...note,
+              remainder: {},
+            }
+          : note
+      )
+    );
+  }
+  setRemainderForNote(noteId: string, remainder: Remainder): void {
+    this.noteSubject$.next(
+      this.noteSubject$.getValue().map((note) =>
+        note.id === noteId
+          ? {
+              ...note,
+              remainder,
+            }
+          : note
+      )
     );
   }
   updateLabelForNote(noteId: string, newLabels: string[]): void {

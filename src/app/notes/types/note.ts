@@ -4,11 +4,16 @@ export interface Note {
   content: string;
   backgroundColor?: string;
   backgroundImage?: string;
-  editedOn: Date;
+  editedOn?: Date;
   labels?: string[];
-  remainder?: Date[];
+  remainder?: Remainder;
   isArchived?: boolean;
   isEdited?: boolean;
   isDeleted?: boolean;
   isPinned?: boolean;
+}
+export interface Remainder {
+  date?: Date;
+  time?: string;
+  repeat?: string;
 }

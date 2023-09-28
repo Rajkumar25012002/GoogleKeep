@@ -36,6 +36,12 @@
             [(selectedImage)]="selectedImage"></app-color-picker>
     </div>
     <div class="remainder-setter" *ngIf="showRemainder">
-        <app-remainder-setter [(showRemainder)]="showRemainder"></app-remainder-setter>
+        <app-remainder-setter [(showRemainder)]="showRemainder"
+            (remainderChange)="remainderSet($event)"></app-remainder-setter>
     </div>
+    <div class="options" *ngIf="isOptionsMenuVisible" (click)="showOptionsMenu()">
+        <p (click)="addLabel()">Add label</p>
+    </div>
+    <app-label-editor class="label-editor-component" [noteId]="''" (editLabel)="editLabel($event)"
+        *ngIf="isLabelEditorVisible"></app-label-editor>
 </div>

@@ -6,7 +6,7 @@
     </div>
     <div class="label-display">
         <div class="label" *ngFor="let item of filterLabels()">
-            <input type="checkbox" [checked]="note?.labels?.includes(item)" />
+            <input type="checkbox" [checked]="note?.labels?.includes(item)" (change)="changeLabels($event, item)"/>
             <p>{{item}}</p>
         </div>
     </div>

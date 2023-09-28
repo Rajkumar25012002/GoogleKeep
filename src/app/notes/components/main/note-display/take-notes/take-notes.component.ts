@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { NoteService } from 'src/app/notes/services/note.service';
 import { SharedService } from 'src/app/notes/services/shared.service';
-import { Note } from 'src/app/notes/types/note';
+import { Note, Remainder } from 'src/app/notes/types/note';
 
 @Component({
   selector: 'app-take-notes',
@@ -69,7 +69,9 @@ export class TakeNotesComponent {
     },
     {
       iconClasses: 'fa-solid fa-ellipsis-vertical',
-      clickAction: () => {},
+      clickAction: () => {
+        this.showOptionsMenu();
+      },
       iconName: 'More',
       showName: false,
     },
@@ -95,6 +97,10 @@ export class TakeNotesComponent {
   selectedColor: string = 'transparent';
   selectedImage: string = '';
   notes: Note[] = [];
+  isLabelEditorVisible: boolean = false;
+  isOptionsMenuVisible: boolean = false;
+  createdLabels: string[] = [];
+  remainder: Remainder = {};
   newNotes: Note = {
     id: Math.random().toString(10),
     title: '',
@@ -139,8 +145,9 @@ export class TakeNotesComponent {
     this.newNotes.backgroundImage = this.selectedImage;
     this.newNotes.isPinned = this.isPinned;
     this.newNotes.labels = this.labels;
+    this.newNotes.labels.push(...this.createdLabels);
+    this.newNotes.remainder = this.remainder;
     this.noteService.addNote(this.newNotes);
-    console.log(this.newNotes);
     this.newNotes = {
       id: Math.random().toString(10),
       title: '',
@@ -159,6 +166,9 @@ export class TakeNotesComponent {
   pinNote(): void {
     this.isPinned = !this.isPinned;
   }
+  remainderSet(remainder: Remainder): void {
+    this.remainder = remainder;
+  }
   archieveNote(): void {
     this.newNotes.isArchived = !this.newNotes.isArchived;
   }
@@ -167,6 +177,17 @@ export class TakeNotesComponent {
   }
   showRemainderSetter(): void {
     this.showRemainder = !this.showRemainder;
+  }
+  editLabel(labels: string[]): void {
+    this.createdLabels = labels;
+  }
+  showOptionsMenu(): void {
+    this.isOptionsMenuVisible = !this.isOptionsMenuVisible;
+    this.isLabelEditorVisible = false;
+  }
+  addLabel(): void {
+    this.isOptionsMenuVisible = false;
+    this.isLabelEditorVisible = !this.isLabelEditorVisible;
   }
   expandNoteEditor(): void {
     this.expand = !this.expand;
