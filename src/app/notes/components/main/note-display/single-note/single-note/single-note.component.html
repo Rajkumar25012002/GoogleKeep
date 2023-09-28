@@ -3,7 +3,9 @@
     <div class="info">
         <main class="content" (click)="openNoteDetails()">
             <header>{{note.title}}</header>
-            <p>{{note.content.slice(0, 550)}}{{note.content.length > 550 ? "..." : ""}}</p>
+            <p *ngIf="note.content.length>1">{{note.content.slice(0, 550)}}{{note.content.length > 550 ? "..." : ""}}
+            </p>
+            <p class="empty" *ngIf="note.content==='\n'">Empty note</p>
         </main>
         <div class="icon" (click)="pinNote()">
             <i class="fa-solid fa-thumbtack" [ngStyle]="{color: note.isPinned ? 'rgb(251,188,4)' : ''}"></i>
@@ -34,6 +36,9 @@
         <div class="color-picker" (click)="showColorPicker()">
             <app-color-picker [show]="show" [(selectedColor)]="selectedColor"
                 [(selectedImage)]="selectedImage"></app-color-picker>
+        </div>
+        <div class="remainder-setter" *ngIf="showRemainder">
+            <app-remainder-setter [(showRemainder)]="showRemainder"></app-remainder-setter>
         </div>
     </footer>
 

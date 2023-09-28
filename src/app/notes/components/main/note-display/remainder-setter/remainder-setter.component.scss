@@ -1,0 +1,69 @@
+.remainder {
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.25rem;
+    gap: 1rem;
+    width: 15rem;
+    height: max-content;
+    background-color: rgb(32, 33, 36);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    padding: 1rem 0.5rem;
+
+    .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+        background-color: transparent;
+    }
+
+    .mat-mdc-form-field-infix {
+        min-height: 0px;
+    }
+
+    &>.header {
+        font-weight: 600;
+        font-size: 1rem;
+    }
+
+    i,
+    p {
+        font-size: small;
+        color: rgb(198, 198, 198);
+        cursor: pointer;
+        margin: 0;
+    }
+
+    &>.set-today,
+    .set-nextweek {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &>.select-datetime {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    &>header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.5rem;
+    }
+
+    &>button {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        align-self: flex-end;
+        padding: 0.5rem 1rem;
+        width: max-content;
+        font-weight: bold;
+        color: #cccccc92;
+        border-radius: 0.25rem;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+            background-color: rgba(84, 84, 84, 0.245);
+        }
+    }
+}

@@ -4,7 +4,9 @@ header {
     padding: 0.5rem;
     border-top: 1px solid rgb(95, 99, 104);
     border-bottom: 1px solid rgb(95, 99, 104);
-
+    p{
+        margin: 0;
+    }
     .icon {
         display: flex;
         position: relative;

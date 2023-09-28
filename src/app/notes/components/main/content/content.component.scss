@@ -5,7 +5,9 @@
     height: 40rem;
     overflow-y: auto;
     overflow-x: hidden;
-
+    p{
+        margin: 0;
+    }
     &:hover {
         width: auto;
     }

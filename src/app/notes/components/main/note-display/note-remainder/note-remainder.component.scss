@@ -25,7 +25,8 @@
         height: 60rem;
 
     }
-    &>.empty{
+
+    &>.empty {
         position: absolute;
         display: flex;
         flex-direction: column;
@@ -33,13 +34,15 @@
         gap: 2rem;
         justify-content: center;
         top: 40%;
-        &>p{
+
+        &>p {
             font-size: 1.5rem;
             color: rgb(154, 160, 166);
         }
-        &>i{
+
+        &>i {
             font-size: 5rem;
-            color: rgb(55,56,58);
+            color: rgb(55, 56, 58);
         }
     }
 }

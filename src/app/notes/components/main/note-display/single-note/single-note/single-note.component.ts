@@ -22,6 +22,7 @@ export class SingleNoteComponent {
     });
   }
   show: boolean = false;
+  showRemainder: boolean = false;
   isOptionsMenuVisible: boolean = false;
   isLabelEditorVisible: boolean = false;
   selectedColor: string = 'transparent';
@@ -29,7 +30,9 @@ export class SingleNoteComponent {
   iconData = [
     {
       iconClasses: 'fa-solid fa-bell',
-      clickAction: () => {},
+      clickAction: () => {
+        this.showRemainderSetter();
+      },
       iconName: 'Remaind me',
       showName: false,
     },
@@ -79,6 +82,9 @@ export class SingleNoteComponent {
       );
     }
     this.show = !this.show;
+  }
+  showRemainderSetter(): void {
+    this.showRemainder = !this.showRemainder;
   }
   showIconName(iconName: string): void {
     this.iconData.map((icon) => {

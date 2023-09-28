@@ -20,6 +20,9 @@ import { FilterNotesLabelPipe } from './notes/pipes/filter-notes-label.pipe';
 import { NotesBinComponent } from './notes/components/main/notes-bin/notes-bin.component';
 import { NotesArchievedComponent } from './notes/components/main/notes-archieved/notes-archieved.component';
 import { NotesAddLabelComponent } from './notes/components/main/notes-add-label/notes-add-label.component';
+import { NoteRemainderComponent } from './notes/components/main/note-display/note-remainder/note-remainder.component';
+import { RemainderSetterComponent } from './notes/components/main/note-display/remainder-setter/remainder-setter.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -40,8 +43,9 @@ import { NotesAddLabelComponent } from './notes/components/main/notes-add-label/
     NotesBinComponent,
     NotesArchievedComponent,
     NotesAddLabelComponent,
+    NoteRemainderComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, RouterModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, RouterModule, BrowserAnimationsModule, RemainderSetterComponent],
   providers: [],
   bootstrap: [AppComponent],
 })

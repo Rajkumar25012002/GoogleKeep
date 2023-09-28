@@ -33,7 +33,9 @@ export class TakeNotesComponent {
   noteIconData: any[] = [
     {
       iconClasses: 'fa-solid fa-bell',
-      clickAction: () => {},
+      clickAction: () => {
+        this.showRemainderSetter();
+      },
       iconName: 'Remind me',
       showName: false,
     },
@@ -88,6 +90,7 @@ export class TakeNotesComponent {
   isGridDisplay: boolean = true;
   isPinned: boolean = false;
   show: boolean = false;
+  showRemainder: boolean = false;
   expand: boolean = false;
   selectedColor: string = 'transparent';
   selectedImage: string = '';
@@ -137,6 +140,7 @@ export class TakeNotesComponent {
     this.newNotes.isPinned = this.isPinned;
     this.newNotes.labels = this.labels;
     this.noteService.addNote(this.newNotes);
+    console.log(this.newNotes);
     this.newNotes = {
       id: Math.random().toString(10),
       title: '',
@@ -160,6 +164,9 @@ export class TakeNotesComponent {
   }
   showColorPicker(): void {
     this.show = !this.show;
+  }
+  showRemainderSetter(): void {
+    this.showRemainder = !this.showRemainder;
   }
   expandNoteEditor(): void {
     this.expand = !this.expand;

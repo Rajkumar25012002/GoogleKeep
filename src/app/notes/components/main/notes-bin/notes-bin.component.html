@@ -1,5 +1,5 @@
 <div class="note-display">
-    <span>
+    <span *ngIf="notes?.length">
         <p>Notes in the Bin are deleted after 7 days</p>
         <button (click)="emptyBin()">Empty bin</button>
     </span>
@@ -30,5 +30,9 @@
                 </footer>
             </div>
         </div>
+    </div>
+    <div class="empty" *ngIf="!notes?.length">
+        <i class="fa-solid fa-trash"></i>
+        <p>Your deleted notes appear here</p>
     </div>
 </div>

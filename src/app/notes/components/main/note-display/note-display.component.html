@@ -6,5 +6,9 @@
             <app-single-note [note]="note" [isGridDisplay]="isGridDisplay"></app-single-note>
         </div>
     </div>
+    <div class="empty" *ngIf="!notes?.length">
+        <i class="fa-regular fa-lightbulb"></i>
+        <p>Notes you add appear here</p>
+    </div>
 </div>
 <router-outlet></router-outlet>

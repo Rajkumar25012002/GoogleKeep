@@ -66,6 +66,20 @@ export class NoteService {
       })
     );
   }
+  updateLabelForNote(noteId: string, newLabels: string[]): void {
+    this.noteSubject$.next(
+      this.noteSubject$.getValue().map((note) => {
+        if (note.id === noteId) {
+          return {
+            ...note,
+            labels: newLabels,
+          };
+        }
+        return note;
+      })
+    );
+    this.updateLabels(newLabels);
+  }
   deleteLabel(label: string): void {
     this.labelsListSubject.next(
       this.labelsListSubject.getValue().filter((labelName) => {

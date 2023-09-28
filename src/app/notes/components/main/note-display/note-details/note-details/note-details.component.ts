@@ -41,6 +41,7 @@ export class NoteDetailsComponent implements OnInit, AfterViewInit {
     }, 0);
   }
   show: boolean = false;
+  showRemainder: boolean = false;
   isOptionsMenuVisible: boolean = false;
   isLabelEditorVisible: boolean = false;
   selectedColor: string = 'transparent';
@@ -48,7 +49,9 @@ export class NoteDetailsComponent implements OnInit, AfterViewInit {
   iconData = [
     {
       iconClasses: 'fa-solid fa-bell',
-      clickAction: () => {},
+      clickAction: () => {
+        this.showRemainderSetter();
+      },
       iconName: 'Remaind me',
       showName: false,
     },
@@ -111,12 +114,18 @@ export class NoteDetailsComponent implements OnInit, AfterViewInit {
     }
     this.show = !this.show;
   }
+  showRemainderSetter(): void {
+    this.showRemainder = !this.showRemainder;
+  }
   showIconName(iconName: string): void {
     this.iconData.map((icon) => {
       icon.showName = icon.iconName === iconName;
     });
   }
-
+  updateLabels(newLabels: string[]): void {
+    // this.note.labels = newLabels;
+    this.noteService.updateLabelForNote(this.note.id, newLabels);
+  }
   hideIconName(): void {
     this.iconData.forEach((icon) => {
       icon.showName = false;
