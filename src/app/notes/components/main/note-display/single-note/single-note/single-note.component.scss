@@ -76,7 +76,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: 0.5rem;
-        padding: 0 0.25rem;
+        padding: 0.25rem 0.5rem;
 
         &>p,
         span {
@@ -90,7 +90,7 @@
     &>.remainder {
         display: flex;
         align-items: center;
-        margin: 0 0.5rem;
+        margin: 0.25rem 0.5rem;
         border: 1px solid rgb(95, 99, 104);
         padding: 0.25rem;
         width: 7rem;

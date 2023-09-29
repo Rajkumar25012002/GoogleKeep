@@ -7,6 +7,8 @@ import { NotesBinComponent } from './notes/components/main/notes-bin/notes-bin.c
 import { NotesArchievedComponent } from './notes/components/main/notes-archieved/notes-archieved.component';
 import { NotesAddLabelComponent } from './notes/components/main/notes-add-label/notes-add-label.component';
 import { NoteRemainderComponent } from './notes/components/main/note-display/note-remainder/note-remainder.component';
+import { NotesSearchComponent } from './notes/components/main/notes-search/notes-search.component';
+import { NoteSearchResultComponent } from './notes/components/main/notes-search/note-search-result/note-search-result.component';
 const routes: Routes = [
   {
     path: '',
@@ -20,7 +22,15 @@ const routes: Routes = [
       { path: 'labels/:labelId', component: NoteDisplayComponent },
       { path: 'note/:noteId', component: NoteDetailsComponent },
       { path: 'remainders', component: NoteRemainderComponent },
-
+      {
+        path: 'searchNote',
+        component: NotesSearchComponent,
+        children: [],
+      },
+      {
+        path: 'searchNote/:searchType/:searchText',
+        component: NoteSearchResultComponent,
+      },
       { path: 'archieve', component: NotesArchievedComponent },
       { path: 'bin', component: NotesBinComponent },
     ],

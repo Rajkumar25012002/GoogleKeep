@@ -1,25 +1,44 @@
-import { Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SharedService {
-
-  constructor() { }
-  showLabels:boolean = false;
+  constructor() {}
+  showLabels: boolean = false;
   private isGridDisplaySubject = new BehaviorSubject<boolean>(true);
   isGridDisplay$ = this.isGridDisplaySubject.asObservable();
-  showAllLabels() :void{
-    this.showLabels = true; 
+  private activeRoute: BehaviorSubject<{
+    url: string;
+    params: { [x: string]: any };
+  } | null> = new BehaviorSubject<{
+    url: string;
+    params: { [x: string]: any };
+  } | null>(null);
+  activeRoute$ = this.activeRoute.asObservable();
+  searchQuery=new BehaviorSubject<string>('');
+  searchQuery$=this.searchQuery.asObservable();
+  showAllLabels(): void {
+    this.showLabels = true;
   }
-  toggleGridDisplay() :void{
+  toggleGridDisplay(): void {
     this.isGridDisplaySubject.next(!this.isGridDisplaySubject.getValue());
   }
-  hideAllLabels() :void{
+  hideAllLabels(): void {
     this.showLabels = false;
   }
-  toggleAllLabels() :void{
-    this.showLabels = !this.showLabels
+  toggleAllLabels(): void {
+    this.showLabels = !this.showLabels;
+  }
+  setActiveRoute(route: ActivatedRoute): void {
+    this.activeRoute.next({
+      params: route.snapshot.params,
+      url: route.snapshot.url[0].path,
+    });
+  }
+  setSearchQuery(query: string): void {
+    this.searchQuery.next(query);
   }
 }

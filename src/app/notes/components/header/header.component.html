@@ -6,7 +6,10 @@
     </div>
     <div class="search">
         <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" placeholder="Search" />
+        <input type="text"
+            placeholder="{{ routeParams?.searchType?.length > 0 ? 'Search within ' + routeParams?.searchText : 'Search notes' }}"
+            (focus)="navigateToSearch()" (blur)="onInputBlur()" [(ngModel)]="searchQuery"(ngModelChange)="setSearchQuery()" />
+        <i class="fa-solid fa-xmark" *ngIf="isInputFocus|| isSearchRoute" (click)="clearSearchInput()"></i>
     </div>
     <div class="options">
         <div class="icon" *ngFor="let item of navIconsData" [ngStyle]="{display: item.showIcon ? '' : 'none'}">

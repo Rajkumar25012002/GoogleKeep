@@ -1,14 +1,23 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SharedService } from '../../services/shared.service';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  constructor(private sharedService: SharedService) {}
+  isInputFocus: boolean = false;
+  constructor(
+    private sharedService: SharedService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
   isGridDisplay: boolean = true;
   isChangeDisplayInProgress: boolean = false;
+  searchQuery: string = '';
+  isSearchRoute: boolean = false;
+  routeParams: any = [];
   navIconsData: any[] = [
     {
       iconClasses: 'fa-solid fa-rotate-right',
@@ -60,13 +69,22 @@ export class HeaderComponent {
     this.sharedService.isGridDisplay$.subscribe((isGridDisplay) => {
       this.isGridDisplay = isGridDisplay;
     });
+    this.sharedService.activeRoute$.subscribe((activeRoute) => {
+      if (activeRoute?.url === 'searchNote') {
+        this.isSearchRoute = true;
+        this.isInputFocus = true;
+      }
+      this.routeParams = activeRoute?.params;
+    });
+  }
+  setSearchQuery(): void {
+    this.sharedService.setSearchQuery(this.searchQuery);
   }
   showIconName(iconName: string): void {
     this.navIconsData.map((icon) => {
       icon.showName = icon.iconName === iconName;
     });
   }
-
   hideIconName(): void {
     this.navIconsData.forEach((icon) => {
       icon.showName = false;
@@ -84,5 +102,20 @@ export class HeaderComponent {
   }
   toggleAllLabels() {
     this.sharedService.toggleAllLabels();
+  }
+  onInputBlur() {
+    setTimeout(() => {
+      this.isInputFocus = false;
+    }, 250);
+  }
+  navigateToSearch() {
+    if (this.isSearchRoute) return;
+    this.router.navigate(['searchNote']);
+  }
+  clearSearchInput() {
+    this.searchQuery = '';
+    this.isSearchRoute = false;
+    this.routeParams = [];
+    this.router.navigate(['/']);
   }
 }

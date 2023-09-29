@@ -23,6 +23,9 @@ import { NotesAddLabelComponent } from './notes/components/main/notes-add-label/
 import { NoteRemainderComponent } from './notes/components/main/note-display/note-remainder/note-remainder.component';
 import { RemainderSetterComponent } from './notes/components/main/note-display/remainder-setter/remainder-setter.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NotesSearchComponent } from './notes/components/main/notes-search/notes-search.component';
+import { NoteSearchResultComponent } from './notes/components/main/notes-search/note-search-result/note-search-result.component';
+import { FilterNotesContentPipe } from './notes/pipes/filter-notes-content.pipe';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NotesArchievedComponent,
     NotesAddLabelComponent,
     NoteRemainderComponent,
+    NotesSearchComponent,
+    NoteSearchResultComponent,
+    FilterNotesContentPipe,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, RouterModule, BrowserAnimationsModule, RemainderSetterComponent],
   providers: [],

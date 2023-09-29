@@ -1,16 +1,12 @@
 <div class="note-display">
-    <ng-container *ngIf="searchQuery.length<1">
-        <app-take-notes></app-take-notes></ng-container>
     <div class="contents" #contents [style.height.px]="containerHeight"
         [ngStyle]="{flexDirection: isGridDisplay ? 'row' : 'column',height:isGridDisplay ? '' : 'auto'}">
-        <div *ngFor="let note of notes | filterNotesLabel:label | orderPinnedNotes| filterNotesContent:searchQuery "
-            class="content">
+        <div *ngFor="let note of notes |filterNotesContent:searchQuery" class="content">
             <app-single-note [note]="note" [isGridDisplay]="isGridDisplay"></app-single-note>
         </div>
     </div>
     <div class="empty" *ngIf="!notes?.length">
-        <i class="fa-regular fa-lightbulb"></i>
-        <p>Notes you add appear here</p>
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <p>Your search results appear here</p>
     </div>
 </div>
-<router-outlet></router-outlet>

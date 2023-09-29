@@ -1,0 +1,25 @@
+<div class="search-container" *ngIf="searchQuery.length<1">
+    <div class="search-type" *ngFor="let item of searchData">
+        <ng-container *ngIf="item.values.length>1">
+            <header>
+                <p>{{item.type}}</p>
+                <button (click)="toggleMore(item.type)" *ngIf="item.isOverflow">{{item.displayall? 'Less' :
+                    'More'}}</button>
+            </header>
+            <main #mainContents [ngStyle]="{flexWrap: !item.displayall? '' : 'wrap' }">
+                <div class="search-item" *ngFor="let value of item.values"
+                    (click)="searchNoteBy(item.searchLabel,value.searchtext)"
+                    [ngStyle]="{justifyContent: item.searchLabel!=='colors'?'flex-end':'center'}">
+                    <i *ngIf="item.searchLabel!=='colors'" class={{value.icon}}></i>
+                    <p *ngIf="item.searchLabel!=='colors'">{{value.iconName}}</p>
+                    <p *ngIf="item.searchLabel==='colors'" class="color"
+                        [ngStyle]="{backgroundColor: value.searchtext}">
+                    </p>
+                </div>
+            </main>
+        </ng-container>
+    </div>
+</div>
+<div *ngIf="searchQuery.length>0">
+    <app-note-display></app-note-display>
+</div>

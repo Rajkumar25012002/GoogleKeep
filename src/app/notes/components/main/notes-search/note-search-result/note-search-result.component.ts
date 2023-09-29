@@ -1,42 +1,39 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
-import { Note } from 'src/app/notes/types/note';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NoteService } from 'src/app/notes/services/note.service';
 import { SharedService } from 'src/app/notes/services/shared.service';
-import { ActivatedRoute } from '@angular/router';
+import { Note } from 'src/app/notes/types/note';
+
 @Component({
-  selector: 'app-note-display',
-  templateUrl: './note-display.component.html',
-  styleUrls: ['./note-display.component.scss'],
+  selector: 'app-note-search-result',
+  templateUrl: './note-search-result.component.html',
+  styleUrls: ['./note-search-result.component.scss'],
 })
-export class NoteDisplayComponent implements OnInit, AfterViewInit {
+export class NoteSearchResultComponent {
   @ViewChild('contents', { static: false }) contents!: ElementRef;
-  label: string = '';
   containerHeight: number = 60 * 16;
-  isGridDisplay: boolean = true;
   notes: Note[] = [];
+  isGridDisplay: boolean = true;
   searchQuery: string = '';
   constructor(
     private noteService: NoteService,
     private sharedService: SharedService,
-    private route: ActivatedRoute
-  ) {
-    this.noteService.notes$.subscribe((notes) => {});
-  }
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
   ngOnInit(): void {
-    this.noteService.getNotes().subscribe((notes) => {
-      this.notes = notes;
-    })
+    this.route.params.subscribe((params: { [x: string]: any }) => {
+      const searchType = params['searchType'];
+      const searchText = params['searchText'];
+      this.noteService
+        .searchNotesBy(searchType, searchText)
+        .subscribe((notes) => {
+          this.notes = notes;
+        });
+      this.sharedService.setActiveRoute(this.route);
+    });
     this.sharedService.isGridDisplay$.subscribe((isGridDisplay) => {
       this.isGridDisplay = isGridDisplay;
-    });
-    this.route.params.subscribe((params: { [x: string]: any }) => {
-      this.label = params['labelId'] || '';
     });
     this.sharedService.searchQuery$.subscribe((searchQuery) => {
       this.searchQuery = searchQuery;
@@ -45,7 +42,6 @@ export class NoteDisplayComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.adjustContainerHeight();
   }
-
   adjustContainerHeight() {
     const containerElement = this.contents.nativeElement;
     if (containerElement.scrollHeight > containerElement.clientHeight) {

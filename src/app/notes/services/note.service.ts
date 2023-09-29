@@ -46,9 +46,65 @@ export class NoteService {
   getAllRemainderNotes(): Observable<Note[]> {
     return this.notes$.pipe(
       map((notes: Note[]) =>
-        notes.filter((note: Note) => !note.isArchived && !note.isDeleted && note.remainder?.date)
+        notes.filter(
+          (note: Note) =>
+            !note.isArchived && !note.isDeleted && note.remainder?.date
+        )
       )
     );
+  }
+  getAllNotesByBackgroundColor(color: string): Observable<Note[]> {
+    return this.notes$.pipe(
+      map((notes: Note[]) =>
+        notes.filter(
+          (note: Note) => note.backgroundColor === color && !note.isDeleted
+        )
+      )
+    );
+  }
+  getAllBackgroundColor(): Observable<string[]> {
+    return this.notes$.pipe(
+      map((notes: Note[]) => {
+        const uniqueColors = new Set<string>();
+
+        notes.forEach((note: Note) => {
+          uniqueColors.add(note.backgroundColor || '');
+        });
+
+        return Array.from(uniqueColors);
+      })
+    );
+  }
+  getAllNotesByLabel(label: string): Observable<Note[]> {
+    return this.notes$.pipe(
+      map((notes: Note[]) =>
+        notes.filter(
+          (note: Note) => note.labels?.includes(label) && !note.isDeleted
+        )
+      )
+    );
+  }
+  searchNotesBy(searchType: string, searchText: string): Observable<Note[]> {
+    if (searchType == 'types') {
+      if (searchText === 'remainders') {
+        return this.notes$.pipe(
+          map((notes: Note[]) =>
+            notes.filter(
+              (note: Note) => !note.isDeleted && note.remainder?.date
+            )
+          )
+        );
+      } else if (searchText === 'archieves') {
+        return this.getAllArchievedNotes();
+      } else {
+        return this.getNotes();
+      }
+    } else if (searchType == 'labels') {
+      return this.getAllNotesByLabel(searchText);
+    } else if (searchType == 'colors') {
+      return this.getAllNotesByBackgroundColor(searchText);
+    }
+    return this.getNotes();
   }
   getNoteById(id: string | null): Observable<Note | undefined> {
     return this.notes$.pipe(
@@ -99,6 +155,7 @@ export class NoteService {
       )
     );
   }
+
   updateLabelForNote(noteId: string, newLabels: string[]): void {
     this.noteSubject$.next(
       this.noteSubject$.getValue().map((note) => {
