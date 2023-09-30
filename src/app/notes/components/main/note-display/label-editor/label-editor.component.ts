@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NoteService } from 'src/app/notes/services/note.service';
+import { SharedService } from 'src/app/notes/services/shared.service';
 import { Note } from 'src/app/notes/types/note';
 
 @Component({
@@ -10,16 +11,24 @@ import { Note } from 'src/app/notes/types/note';
 export class LabelEditorComponent implements OnInit {
   @Input('noteId') noteId!: string;
   @Output('editLabel') editLabel = new EventEmitter();
-  constructor(private noteService: NoteService) {}
+  constructor(
+    private noteService: NoteService,
+    private sharedService: SharedService
+  ) {}
   note: Note | undefined = {} as Note;
   allLabels: string[] = [];
   searchLabel: string = '';
+  isDarkMode: boolean = true;
   ngOnInit(): void {
     this.noteService.getNoteById(this.noteId).subscribe((note) => {
-      this.note = note || {id:'',content:'',title:'',labels: []}  as Note;
+      this.note =
+        note || ({ id: '', content: '', title: '', labels: [] } as Note);
     });
     this.noteService.getAllLabels().subscribe((labels) => {
       this.allLabels = labels;
+    });
+    this.sharedService.isDarkMode$.subscribe((isDarkMode) => {
+      this.isDarkMode = isDarkMode;
     });
   }
   filterLabels(): string[] {
@@ -37,8 +46,8 @@ export class LabelEditorComponent implements OnInit {
     } else {
       this.note?.labels?.splice(this.note?.labels?.indexOf(label), 1);
     }
-    if(this.noteId===''){
-      this.editLabel.emit(this.note?.labels)
+    if (this.noteId === '') {
+      this.editLabel.emit(this.note?.labels);
     }
     setTimeout(() => {
       this.noteService.updateLabelForNote(this.noteId, this.note?.labels || []);

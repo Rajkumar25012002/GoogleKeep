@@ -13,6 +13,7 @@ export class NotesArchievedComponent {
   containerHeight: number = 60 * 16;
   notes: Note[] = [];
   isGridDisplay: boolean = true;
+  isDarkMode: boolean = true
   constructor(
     private noteService: NoteService,
     private sharedService: SharedService
@@ -24,6 +25,9 @@ export class NotesArchievedComponent {
     this.sharedService.isGridDisplay$.subscribe((isGridDisplay) => {
       this.isGridDisplay = isGridDisplay;
     });
+    this.sharedService.isDarkMode$.subscribe((isDarkMode) => {
+      this.isDarkMode = isDarkMode;
+    })
   }
   ngAfterViewInit() {
     this.adjustContainerHeight();

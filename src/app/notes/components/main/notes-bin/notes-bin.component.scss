@@ -1,3 +1,5 @@
+@import '/src/styles/shared-styles.scss';
+
 .note-display {
     display: flex;
     flex-direction: column;
@@ -37,7 +39,7 @@
             padding: 0.5rem;
 
             &:hover {
-                background-color: rgb(36, 39, 45);
+                background-color: rgba(84, 84, 84, 0.245);
             }
         }
 
@@ -60,7 +62,7 @@
                 width: 15rem;
                 max-height: 30rem;
                 min-height: 5rem;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+                box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
@@ -107,14 +109,13 @@
 
                         &>header {
                             width: 12rem;
-                            color: rgb(204, 204, 204);
                             font-weight: bold;
                             margin-bottom: 5px;
                             text-align: justify;
                         }
 
                         &>.empty {
-                            color: rgb(204, 204, 204);
+                            color: rgb(204, 204, 204, 0.5);
                             font-size: 1.5rem;
                         }
                     }
@@ -128,7 +129,7 @@
 
                     &>p {
                         font-size: small;
-                        border: 1px solid rgb(179, 179, 179);
+                        border: 1px solid rgb(95, 99, 104);
                         padding: 0.25rem;
                         border-radius: 0.5rem;
                     }
@@ -145,10 +146,10 @@
                             width: max-content;
                             padding: 0.15rem;
                             border-radius: 0.25rem;
-                            bottom: -1.5rem;
+                            bottom: -2rem;
                             text-align: center;
                             font-size: small;
-                            background-color: rgba(82, 83, 85, 0.67);
+                            background-color: rgb(82, 83, 85);
                         }
                     }
                 }
@@ -173,6 +174,53 @@
         &>i {
             font-size: 5rem;
             color: rgb(55, 56, 58);
+        }
+    }
+}
+
+.light-mode {
+    &::-webkit-scrollbar {
+        &-thumb {
+            background-color: $light-scroll-color;
+        }
+    }
+
+    &>span>button:hover {
+        background-color: $light-icon-hover-background-color;
+    }
+
+    &>.empty {
+        &>p {
+            color: $light-empty-text-color;
+        }
+
+        &>i {
+            color: $light-empty-icon-color
+        }
+    }
+
+    &>.contents {
+        .content {
+            .single-note {
+                border: 1px solid $light-border-color;
+
+                &>.info>.empty {
+                    color: $light-empty-text-color;
+                }
+
+                &>.labels>p {
+                    border: none;
+                    background-color: $light-icon-hover-background-color;
+                }
+
+                &>footer {
+                    .icon {
+                        &>.name {
+                            background-color: $dark-search-background-color;
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -1,3 +1,5 @@
+@import '/src/styles/shared-styles.scss';
+
 .popup-background {
     position: fixed;
     top: 0;
@@ -19,7 +21,7 @@
         gap: 0.5rem;
         z-index: 3;
         background-color: rgb(32, 33, 36);
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
         padding: 0.5rem;
 
         &>h4 {
@@ -41,17 +43,6 @@
 
             &:hover {
                 background-color: rgba(84, 84, 84, 0.245);
-            }
-
-            &>.name {
-                position: absolute;
-                width: max-content;
-                padding: 0.15rem;
-                border-radius: 0.25rem;
-                bottom: -1rem;
-                text-align: center;
-                font-size: small;
-                background-color: rgba(82, 83, 85, 0.67);
             }
         }
 
@@ -108,7 +99,6 @@
             padding: 0.5rem 1rem;
             width: max-content;
             font-weight: bold;
-            color: #cccccc92;
             border-radius: 0.25rem;
             transition: all 0.2s ease-in-out;
 
@@ -117,4 +107,29 @@
             }
         }
     }
+}
+
+.light-mode {
+    &>.edit-labels {
+        background-color: $light-background-color;
+
+        .icon:hover {
+            background-color: $light-icon-hover-background-color;
+        }
+
+        &>.labels-list {
+
+            &::-webkit-scrollbar {
+                &-thumb {
+                    background-color: $light-scroll-color;
+                }
+            }
+        }
+
+        &>button:hover {
+            background-color: $light-icon-hover-background-color;
+        }
+    }
+
+
 }

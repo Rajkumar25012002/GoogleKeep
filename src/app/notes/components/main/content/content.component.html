@@ -1,4 +1,4 @@
-<div class="contents" (mouseenter)="showAllLabels()" (mouseleave)="hideAllLabels()"
+<div class="contents" (mouseenter)="showAllLabels()" (mouseleave)="hideAllLabels()"[ngClass]="{'light-mode': !isDarkMode}"
     [ngStyle]="{boxShadow: showLabels() ? '5px 0 5px -5px rgba(0, 0, 0, 0.5)' : ''}">
     <a routerLinkActive="active-link" routerLink={{item.routerLink}} [routerLinkActiveOptions]="{ exact: true }"
         class="side" *ngFor="let item of generalIconData"

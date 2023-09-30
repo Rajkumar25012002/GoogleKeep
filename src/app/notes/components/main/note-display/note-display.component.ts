@@ -21,6 +21,7 @@ export class NoteDisplayComponent implements OnInit, AfterViewInit {
   isGridDisplay: boolean = true;
   notes: Note[] = [];
   searchQuery: string = '';
+  isDarkMode: boolean = true;
   constructor(
     private noteService: NoteService,
     private sharedService: SharedService,
@@ -40,6 +41,9 @@ export class NoteDisplayComponent implements OnInit, AfterViewInit {
     });
     this.sharedService.searchQuery$.subscribe((searchQuery) => {
       this.searchQuery = searchQuery;
+    })
+    this.sharedService.isDarkMode$.subscribe((isDarkMode) => {
+      this.isDarkMode = isDarkMode;
     })
   }
   ngAfterViewInit() {

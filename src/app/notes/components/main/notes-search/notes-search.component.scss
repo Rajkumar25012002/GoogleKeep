@@ -1,3 +1,5 @@
+@import '/src/styles/shared-styles.scss';
+
 .search-container {
     display: flex;
     flex-direction: column;
@@ -12,13 +14,13 @@
         margin: 0;
     }
 
-    &>.search-type {
+    .search-type-box{
         display: flex;
         flex-direction: column;
         background-color: rgb(40, 41, 44);
         border-radius: 0.15rem;
         width: 31rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
         overflow: hidden;
 
         &>header {
@@ -44,7 +46,7 @@
                 transition: 0.2s ease-in-out;
 
                 &:hover {
-                    background-color: rgb(58, 60, 63);
+                    background-color: rgba(84, 84, 84, 0.245);
                 }
             }
         }
@@ -83,6 +85,28 @@
                     width: 3rem;
                     height: 3rem;
                     border-radius: 50%;
+                }
+            }
+        }
+    }
+}
+
+.light-mode {
+    
+    .search-type-box{
+        background-color: $light-searchtype-background-color;
+
+
+        &>header>button:hover {
+            background-color: $light-icon-hover-background-color;
+        }
+
+        &>main {
+            .search-item {
+                background-color: $light-searchitem-background-color;
+
+                :hover {
+                    background-color: $light-searchitem-hover-background-color;
                 }
             }
         }

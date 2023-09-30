@@ -1,4 +1,4 @@
-<div class="note-display">
+<div class="note-display" [ngClass]="{'light-mode': !isDarkMode}">
     <div class="contents" #contents [style.height.px]="containerHeight"
         [ngStyle]="{flexDirection: isGridDisplay ? 'row' : 'column',height:isGridDisplay ? '' : 'auto'}">
         <div *ngFor="let note of notes" class="content">

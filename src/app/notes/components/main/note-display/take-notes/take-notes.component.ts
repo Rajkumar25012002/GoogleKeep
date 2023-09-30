@@ -101,6 +101,7 @@ export class TakeNotesComponent {
   isOptionsMenuVisible: boolean = false;
   createdLabels: string[] = [];
   remainder: Remainder = {};
+  isDarkMode: boolean = true;
   newNotes: Note = {
     id: Math.random().toString(10),
     title: '',
@@ -126,6 +127,9 @@ export class TakeNotesComponent {
     });
     this.sharedService.isGridDisplay$.subscribe((isGridDisplay) => {
       this.isGridDisplay = isGridDisplay;
+    });
+    this.sharedService.isDarkMode$.subscribe((isDarkMode) => {
+      this.isDarkMode = isDarkMode;
     });
   }
 

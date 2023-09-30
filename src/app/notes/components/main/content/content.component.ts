@@ -13,64 +13,67 @@ export class ContentComponent implements OnInit {
     private sharedService: SharedService
   ) {}
   labelIconData: any[] = [];
-generalIconData: any[] = [];
-
-ngOnInit(): void {
-  this.generateGeneralIconData();
-  this.noteService.getAllLabels().subscribe((labels) => {
-    this.updateLabelIconData(labels);
-  })
-}
-
-updateLabelIconData(labels: string[]): void {
-  this.labelIconData = [];
-  labels.forEach((label) => {
-    this.labelIconData.push({
-      iconClasses: 'fa-solid fa-tag',
-      clickAction: () => {},
-      iconName: label,
-      showName: true,
-      routerLink: `/labels/${label}`,
+  generalIconData: any[] = [];
+  isDarkMode: boolean = true;
+  ngOnInit(): void {
+    this.generateGeneralIconData();
+    this.noteService.getAllLabels().subscribe((labels) => {
+      this.updateLabelIconData(labels);
     });
-  });
-  this.generateGeneralIconData();
-}
+    this.sharedService.isDarkMode$.subscribe((isDarkMode) => {
+      this.isDarkMode = isDarkMode;
+    });
+  }
 
-generateGeneralIconData(): void {
-  this.generalIconData = [
-    {
-      iconClasses: 'fa-regular fa-lightbulb',
-      clickAction: () => {},
-      iconName: 'Notes',
-      routerLink: '/',
-    },
-    {
-      iconClasses: 'fa-solid fa-bell',
-      clickAction: () => {},
-      iconName: 'Remainders',
-      routerLink: '/remainders',
-    },
-    ...this.labelIconData,
-    {
-      iconClasses: 'fa-solid fa-pencil',
-      clickAction: () => {},
-      iconName: 'Edit labels',
-      routerLink: '/edit/labels',
-    },
-    {
-      iconClasses: 'fa-solid fa-file-export',
-      clickAction: () => {},
-      iconName: 'Archieve',
-      routerLink: '/archieve',
-    },
-    {
-      iconClasses: 'fa-solid fa-trash',
-      clickAction: () => {},
-      iconName: 'Bin',
-      routerLink: '/bin',
-    },
-  ];
-}
+  updateLabelIconData(labels: string[]): void {
+    this.labelIconData = [];
+    labels.forEach((label) => {
+      this.labelIconData.push({
+        iconClasses: 'fa-solid fa-tag',
+        clickAction: () => {},
+        iconName: label,
+        showName: true,
+        routerLink: `/labels/${label}`,
+      });
+    });
+    this.generateGeneralIconData();
+  }
+
+  generateGeneralIconData(): void {
+    this.generalIconData = [
+      {
+        iconClasses: 'fa-regular fa-lightbulb',
+        clickAction: () => {},
+        iconName: 'Notes',
+        routerLink: '/',
+      },
+      {
+        iconClasses: 'fa-solid fa-bell',
+        clickAction: () => {},
+        iconName: 'Remainders',
+        routerLink: '/remainders',
+      },
+      ...this.labelIconData,
+      {
+        iconClasses: 'fa-solid fa-pencil',
+        clickAction: () => {},
+        iconName: 'Edit labels',
+        routerLink: '/edit/labels',
+      },
+      {
+        iconClasses: 'fa-solid fa-file-export',
+        clickAction: () => {},
+        iconName: 'Archieve',
+        routerLink: '/archieve',
+      },
+      {
+        iconClasses: 'fa-solid fa-trash',
+        clickAction: () => {},
+        iconName: 'Bin',
+        routerLink: '/bin',
+      },
+    ];
+  }
   showAllLabels(): void {
     setTimeout(() => {
       this.sharedService.showAllLabels();

@@ -1,3 +1,5 @@
+@import '/src/styles/shared-styles.scss';
+
 .remainder {
     display: flex;
     flex-direction: column;
@@ -5,16 +7,8 @@
     width: 15rem;
     height: max-content;
     background-color: rgb(32, 33, 36);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
     padding: 1rem 0.5rem;
-
-    .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-        background-color: transparent;
-    }
-
-    .mat-mdc-form-field-infix {
-        min-height: 0px;
-    }
 
     &>.header {
         font-weight: 600;
@@ -25,7 +19,7 @@
     i,
     p {
         font-size: small;
-        color: rgb(198, 198, 198);
+        color: rgb(189, 189, 189);
         cursor: pointer;
         margin: 0;
     }
@@ -37,7 +31,8 @@
         justify-content: space-between;
         padding: 0.5rem;
         cursor: pointer;
-        &:hover{
+
+        &:hover {
             background-color: rgba(84, 84, 84, 0.245);
         }
     }
@@ -64,12 +59,33 @@
         padding: 0.5rem 1rem;
         width: max-content;
         font-weight: bold;
-        color: #cccccc92;
         border-radius: 0.25rem;
         transition: all 0.2s ease-in-out;
 
         &:hover {
             background-color: rgba(84, 84, 84, 0.245);
         }
+    }
+}
+
+.light-mode {
+    background-color: $light-background-color;
+
+    i {
+        color: $light-icon-color;
+    }
+
+    p {
+        color: $light-color;
+    }
+
+    &>.set-today:hover,
+    .set-nextweek:hover {
+        background-color: $light-icon-hover-background-color;
+
+    }
+
+    button {
+        background-color: $light-button-hover-background-color;
     }
 }

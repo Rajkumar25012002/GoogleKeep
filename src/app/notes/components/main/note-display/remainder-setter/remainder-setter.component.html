@@ -1,4 +1,4 @@
-<div class="remainder" *ngIf="showRemainder">
+<div class="remainder" *ngIf="showRemainder" [ngClass]="{'light-mode': !isDarkMode}">
     <ng-container *ngIf="!selectDatetime">
         <p class="header">Remainder</p>
         <div class="set-today" (click)="setRemainderTomorrow()">

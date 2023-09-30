@@ -15,9 +15,11 @@ export class HeaderComponent {
   ) {}
   isGridDisplay: boolean = true;
   isChangeDisplayInProgress: boolean = false;
+  isChangeDarkModeInProgress: boolean = false;
   searchQuery: string = '';
   isSearchRoute: boolean = false;
   routeParams: any = [];
+  isDarkMode: boolean = true;
   navIconsData: any[] = [
     {
       iconClasses: 'fa-solid fa-rotate-right',
@@ -50,8 +52,12 @@ export class HeaderComponent {
     },
     {
       iconClasses: 'fa-solid fa-circle-half-stroke',
-      clickAction: () => {},
-      iconName: 'Background mode',
+      clickAction: () => {
+        if (!this.isChangeDarkModeInProgress) {
+          this.toggleDarkMode();
+        }
+      },
+      iconName: 'Dark mode',
       showIcon: true,
       showName: false,
     },
@@ -75,6 +81,13 @@ export class HeaderComponent {
         this.isInputFocus = true;
       }
       this.routeParams = activeRoute?.params;
+    });
+    this.sharedService.isDarkMode$.subscribe((isDarkMode) => {
+      this.isDarkMode = isDarkMode;
+      this.navIconsData[3].iconClasses = !isDarkMode
+        ? 'fa-solid fa-sun'
+        : 'fa-solid fa-circle-half-stroke';
+      this.navIconsData[3].iconName = !isDarkMode ? 'Light mode' : 'Dark mode';
     });
   }
   setSearchQuery(): void {
@@ -117,5 +130,12 @@ export class HeaderComponent {
     this.isSearchRoute = false;
     this.routeParams = [];
     this.router.navigate(['/']);
+  }
+  toggleDarkMode() {
+    this.isChangeDarkModeInProgress = true;
+    this.sharedService.setIsDarkMode();
+    setTimeout(() => {
+      this.isChangeDarkModeInProgress = false;
+    }, 500);
   }
 }

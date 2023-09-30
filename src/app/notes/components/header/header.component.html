@@ -1,4 +1,4 @@
-<header>
+<header class="header-menu" [ngClass]="{'light-mode': !isDarkMode}">
     <div class="info">
         <div class="icon" (click)="toggleAllLabels()"><i class="fa-solid fa-bars"></i></div>
         <img src="../../../assets/googleKeep.png" alt="">
@@ -8,7 +8,8 @@
         <i class="fa-solid fa-magnifying-glass"></i>
         <input type="text"
             placeholder="{{ routeParams?.searchType?.length > 0 ? 'Search within ' + routeParams?.searchText : 'Search notes' }}"
-            (focus)="navigateToSearch()" (blur)="onInputBlur()" [(ngModel)]="searchQuery"(ngModelChange)="setSearchQuery()" />
+            (focus)="navigateToSearch()" (blur)="onInputBlur()" [(ngModel)]="searchQuery"
+            (ngModelChange)="setSearchQuery()" />
         <i class="fa-solid fa-xmark" *ngIf="isInputFocus|| isSearchRoute" (click)="clearSearchInput()"></i>
     </div>
     <div class="options">

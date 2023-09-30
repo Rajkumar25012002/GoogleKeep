@@ -1,10 +1,16 @@
+@import '/src//styles/shared-styles.scss';
+
 .take-note {
     display: flex;
     flex-direction: column;
     border: 1px solid rgb(95, 99, 104);
     position: relative;
     border-radius: 0.25rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+
+    p {
+        margin: 0;
+    }
 
     .icon {
         display: flex;
@@ -28,7 +34,7 @@
             width: max-content;
             padding: 0.15rem;
             border-radius: 0.25rem;
-            bottom: -1.5rem;
+            bottom: -2.25rem;
             text-align: center;
             font-size: small;
             background-color: rgba(82, 83, 85, 0.67);
@@ -46,7 +52,6 @@
             justify-content: space-between;
 
             &>input {
-                color: rgb(137, 137, 137);
                 font-weight: bold;
                 background-color: transparent;
                 border: none;
@@ -74,7 +79,6 @@
                 background-color: transparent;
                 border: none;
                 outline: none;
-                font-weight: bold;
                 font-size: 1rem;
             }
 
@@ -102,7 +106,6 @@
             background-color: transparent;
             border-radius: 0.25rem;
             padding: 0.5rem;
-            color: rgb(137, 137, 137);
             border: none;
             font-weight: bold;
             outline: none;
@@ -131,12 +134,21 @@
         bottom: 1.5rem;
         align-self: center;
         display: flex;
-        z-index: 3;
         cursor: pointer;
         flex-direction: column;
         border-radius: 0.25rem;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        padding: 0.5rem;
+        padding: 0.25rem;
+
+        &>p {
+            width: 100%;
+            padding: 0.25rem;
+
+            &:hover {
+                background-color: rgba(84, 84, 84, 0.245)
+            }
+        }
+
     }
 
     &>.label-editor-component {
@@ -144,6 +156,32 @@
         bottom: 2rem;
         align-self: center;
         background-color: rgb(32, 33, 36);
-        z-index: 5;
+        z-index: 10;
+    }
+}
+
+.light-mode {
+    border: none;
+
+    .icon {
+        &>.name {
+            background-color: $dark-search-background-color;
+        }
+    }
+
+    .footer {
+        &>button:hover {
+            background-color: $light-button-hover-background-color;
+        }
+    }
+
+    .label-editor-component {
+        background-color: $light-background-color;
+    }
+
+    .options {
+        p:hover {
+            background-color: $light-icon-hover-background-color;
+        }
     }
 }

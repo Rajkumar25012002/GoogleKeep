@@ -1,3 +1,5 @@
+@import '/src/styles/shared-styles.scss';
+
 .popup-background {
     position: fixed;
     top: 0;
@@ -22,7 +24,7 @@
         max-height: 30rem;
         z-index: 3;
         background-color: rgb(32, 33, 36);
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
 
 
         .icon {
@@ -70,7 +72,6 @@
 
                     &>header {
                         width: 100%;
-                        color: rgb(204, 204, 204);
                         font-weight: bold;
                         margin-bottom: 5px;
                         text-align: justify;
@@ -107,7 +108,6 @@
                 padding: 0.25rem;
                 text-align: right;
                 width: 100%;
-                color: rgb(137, 137, 137);
                 font-size: small;
                 font-style: italic;
             }
@@ -148,7 +148,7 @@
                     z-index: 7;
                     text-align: center;
                     font-size: small;
-                    background-color: rgba(82, 83, 85, 0.67);
+                    background-color: rgba(82, 83, 85);
                 }
             }
 
@@ -157,7 +157,6 @@
                 background-color: transparent;
                 border-radius: 0.25rem;
                 padding: 0.5rem;
-                color: rgb(137, 137, 137);
                 border: none;
                 font-weight: bold;
                 outline: none;
@@ -192,6 +191,44 @@
                 align-self: center;
                 bottom: -10rem;
                 z-index: 5;
+            }
+        }
+    }
+}
+
+.light-mode {
+    &>.single-note {
+        background-color: $light-background-color;
+
+        &>main {
+            &>.info {
+                &::-webkit-scrollbar {
+                    &-thumb {
+                        background-color: $light-scroll-color;
+                    }
+                }
+            }
+
+            &>.labels>p,
+            .remainder {
+                border: none;
+                background-color: $light-icon-hover-background-color;
+            }
+        }
+
+        &>footer {
+            &>.label-editor-component {
+                background-color: $light-background-color;
+            }
+
+            &>.icon {
+                .name {
+                    background-color: $dark-search-background-color;
+                }
+            }
+
+            &>button:hover {
+                background-color: $light-icon-hover-background-color;
             }
         }
     }

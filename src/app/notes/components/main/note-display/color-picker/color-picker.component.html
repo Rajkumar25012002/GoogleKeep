@@ -1,10 +1,10 @@
-<div class="color-pallete" *ngIf="show">
+<div class="color-pallete" *ngIf="show" [ngClass]="{'light-mode': !isDarkMode}">
     <div class="color" *ngFor="let color of colorPallete" [ngStyle]="{backgroundColor: color}"
         [ngClass]="color === selectedColor ? 'transparentBorder' : ''" (click)="changeColor(color)">
     </div>
 </div>
-<div class="image-pallete" *ngIf="show">
-    <div class="image" *ngFor="let image of imagePallete"
-        [ngClass]="image === selectedImage ? 'transparentBorder' : ''" (click)="changeImage(image)" [ngStyle]="{backgroundImage: 'url(' + image + ')'}">
+<div class="image-pallete" *ngIf="show" [ngClass]="{'light-mode': !isDarkMode}">
+    <div class="image" *ngFor="let image of imagePallete" [ngClass]="image === selectedImage ? 'transparentBorder' : ''"
+        (click)="changeImage(image)" [ngStyle]="{backgroundImage: 'url(' + image + ')'}">
     </div>
 </div>

@@ -1,3 +1,5 @@
+@import '/src/styles/shared-styles.scss';
+
 .note-display {
     display: flex;
     flex-direction: column;
@@ -43,6 +45,24 @@
         &>i {
             font-size: 5rem;
             color: rgb(55, 56, 58);
+        }
+    }
+}
+
+.light-mode {
+    &::-webkit-scrollbar {
+        &-thumb {
+            background-color: $light-scroll-color;
+        }
+    }
+
+    &>.empty {
+        &>p {
+            color: $light-empty-text-color;
+        }
+
+        &>i {
+            color: $light-empty-icon-color
         }
     }
 }

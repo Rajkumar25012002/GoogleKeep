@@ -1,5 +1,8 @@
+@import '/src/styles/shared-styles.scss';
+
 body {
    background-color: rgb(32, 33, 36);
+
 }
 
 * {
@@ -7,14 +10,40 @@ body {
    padding: 0;
    box-sizing: border-box;
    font-family: 'Roboto', sans-serif;
-   color: white;
+   color: rgb(232, 234, 236);
    text-decoration: none;
 }
 
 i {
    cursor: pointer;
    font-size: 1.25rem;
-   color: #cccccc8f;
+   color: rgba(204, 204, 204, 0.5);
 }
-// html, body { height: 100%; }
-// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+:root.light-mode {
+   background-color: $light-background-color;
+
+   .app {
+      background-color: $light-background-color;
+   }
+
+   * {
+      color: $light-color;
+   }
+
+   i {
+      color: $light-icon-color;
+   }
+
+   .icon {
+      &:hover {
+         background-color: $light-icon-hover-background-color;
+      }
+
+      &>.name {
+         background-color: $dark-search-background-color;
+         color: $light-background-color;
+      }
+   }
+
+}

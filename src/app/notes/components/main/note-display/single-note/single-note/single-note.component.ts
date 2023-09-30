@@ -3,6 +3,7 @@ import { Note, Remainder } from 'src/app/notes/types/note';
 import { DatePipe } from '@angular/common';
 import { NoteService } from 'src/app/notes/services/note.service';
 import { Router } from '@angular/router';
+import { SharedService } from 'src/app/notes/services/shared.service';
 
 @Component({
   selector: 'app-single-note',
@@ -13,12 +14,19 @@ import { Router } from '@angular/router';
 export class SingleNoteComponent {
   @Input('note') note!: Note;
   @Input('isGridDisplay') isGridDisplay!: boolean;
-  constructor(private noteService: NoteService, private router: Router) {}
+  isDarkMode: boolean = true;
+  constructor(private noteService: NoteService, private router: Router,private sharedService: SharedService) {}
   ngOnInit(): void {
     this.iconData.map((icon) => {
       if (icon.iconName === 'Archieve') {
         icon.iconName = this.note.isArchived ? 'UnArchieve' : 'Archieve';
       }
+    });
+    this.sharedService.searchQuery$.subscribe((query) => {
+      this.searchQuery = query;
+    })
+    this.sharedService.isDarkMode$.subscribe((isDarkMode) => {
+      this.isDarkMode = isDarkMode;
     });
   }
   show: boolean = false;
@@ -28,6 +36,7 @@ export class SingleNoteComponent {
   isLabelEditorVisible: boolean = false;
   selectedColor: string = 'transparent';
   selectedImage: string = '';
+  searchQuery: string = '';
   iconData = [
     {
       iconClasses: 'fa-solid fa-bell',

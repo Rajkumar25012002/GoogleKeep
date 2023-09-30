@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { SharedService } from 'src/app/notes/services/shared.service';
 
 @Component({
   selector: 'app-color-picker',
@@ -11,6 +12,13 @@ export class ColorPickerComponent {
   @Input('selectedImage') selectedImage!: string;
   @Output() selectedColorChange = new EventEmitter<string>();
   @Output() selectedImageChange = new EventEmitter<string>();
+  isDarkMode: boolean = false;
+  constructor(private sharedService: SharedService) {}
+  ngOnInit(): void {
+    this.sharedService.isDarkMode$.subscribe((isDarkMode) => {
+      this.isDarkMode = isDarkMode;
+    })
+  }
   colorPallete: string[] = [
     'transparent',
     'rgb(119,23,46)',

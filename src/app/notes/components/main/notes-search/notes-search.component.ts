@@ -57,6 +57,7 @@ export class NotesSearchComponent {
   ) {}
   searchQuery: string = '';
   isSearchRoute: boolean = false;
+  isDarkMode: boolean = true;
   ngOnInit() {
     this.noteService.getAllLabels().subscribe((labels) => {
       this.searchData.map((data) => {
@@ -96,7 +97,11 @@ export class NotesSearchComponent {
     this.sharedService.activeRoute$.subscribe((activeRoute) => {
       this.isSearchRoute = activeRoute?.params?.['searchType']?.length > 0;
     });
+    this.sharedService.isDarkMode$.subscribe((isDarkMode) => {
+      this.isDarkMode = isDarkMode;
+    });
   }
+
   searchNoteBy(searchType: string, searchText: string): void {
     this.router.navigate(['/searchNote', searchType, searchText]);
   }

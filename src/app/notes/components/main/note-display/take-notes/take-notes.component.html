@@ -1,4 +1,4 @@
-<div class="take-note">
+<div class="take-note" [ngClass]="{'light-mode': !isDarkMode}">
     <main [ngStyle]="{backgroundColor: selectedColor,backgroundImage: 'url(' + selectedImage + ')'}">
         <div class="header" *ngIf="expand">
             <input type="text" name="title" placeholder="Title" [value]="newNotes.title"

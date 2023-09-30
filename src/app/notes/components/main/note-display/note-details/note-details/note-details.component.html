@@ -1,4 +1,4 @@
-<div class="popup-background" *ngIf="note!=undefined">
+<div class="popup-background" *ngIf="note!=undefined" [ngClass]="{'light-mode': !isDarkMode}">
     <div class="single-note">
         <main [ngStyle]="{backgroundColor: note.backgroundColor,backgroundImage: 'url(' + note.backgroundImage + ')'}">
             <div class="info">

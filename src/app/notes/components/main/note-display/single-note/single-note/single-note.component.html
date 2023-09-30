@@ -1,9 +1,9 @@
-<div class="single-note"
+<div class="single-note" [ngClass]="{'light-mode': !isDarkMode}"
     [ngStyle]="{backgroundColor: note.backgroundColor,backgroundImage: 'url(' + note.backgroundImage + ')',width: isGridDisplay ? '' : '35rem'}">
     <div class="info" (click)="openNoteDetails()">
         <main class="content">
             <header>{{note.title}}</header>
-            <p *ngIf="note.content.length>1">{{note.content.slice(0, 550)}}{{note.content.length > 550 ? "..." : ""}}
+            <p *ngIf="note.content.length>1" [innerHtml]="note.content.slice(0, 550)|noteContentHighlight:searchQuery">
             </p>
             <p class="empty" *ngIf="note.content==='\n'">Empty note</p>
         </main>

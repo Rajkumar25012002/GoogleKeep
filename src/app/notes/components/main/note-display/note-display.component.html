@@ -1,4 +1,4 @@
-<div class="note-display">
+<div class="note-display" [ngClass]="{'light-mode': !isDarkMode}">
     <ng-container *ngIf="searchQuery.length<1">
         <app-take-notes></app-take-notes></ng-container>
     <div class="contents" #contents [style.height.px]="containerHeight"

@@ -1,7 +1,9 @@
+@import '/src/styles/shared-styles.scss';
+
 .options-menu {
     background-color: rgb(32, 33, 36);
     border-radius: 0.25rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
 
     &>ul {
         display: flex;
@@ -19,6 +21,16 @@
             &:hover {
                 background-color: rgba(84, 84, 84, 0.245);
             }
+        }
+    }
+}
+
+.light-mode {
+    background-color: $light-background-color;
+
+    &>ul {
+        &>li:hover {
+            background-color: $light-icon-hover-background-color;
         }
     }
 }

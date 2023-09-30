@@ -26,6 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotesSearchComponent } from './notes/components/main/notes-search/notes-search.component';
 import { NoteSearchResultComponent } from './notes/components/main/notes-search/note-search-result/note-search-result.component';
 import { FilterNotesContentPipe } from './notes/pipes/filter-notes-content.pipe';
+import { NoteContentHighlightPipe } from './notes/pipes/note-content-highlight.pipe';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { FilterNotesContentPipe } from './notes/pipes/filter-notes-content.pipe'
     NotesSearchComponent,
     NoteSearchResultComponent,
     FilterNotesContentPipe,
+    NoteContentHighlightPipe,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, RouterModule, BrowserAnimationsModule, RemainderSetterComponent],
   providers: [],

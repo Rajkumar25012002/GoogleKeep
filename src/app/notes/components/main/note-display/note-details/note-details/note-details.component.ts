@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NoteService } from 'src/app/notes/services/note.service';
+import { SharedService } from 'src/app/notes/services/shared.service';
 
 @Component({
   selector: 'app-note-details',
@@ -20,10 +21,12 @@ import { NoteService } from 'src/app/notes/services/note.service';
 export class NoteDetailsComponent implements OnInit, AfterViewInit {
   note: Note = {} as Note;
   containerHeight: number = 60 * 16;
+  isDarkMode: boolean = true;
   @ViewChild('textcontent') textcontent!: ElementRef;
   constructor(
     private route: ActivatedRoute,
     private noteService: NoteService,
+    private sharedService: SharedService,
     private router: Router,
     private renderer: Renderer2
   ) {}
@@ -34,6 +37,9 @@ export class NoteDetailsComponent implements OnInit, AfterViewInit {
         this.note = note || ({} as Note);
       });
     });
+    this.sharedService.isDarkMode$.subscribe((isDarkMode) => {
+      this.isDarkMode = isDarkMode;
+    })
   }
   ngAfterViewInit() {
     setTimeout(() => {

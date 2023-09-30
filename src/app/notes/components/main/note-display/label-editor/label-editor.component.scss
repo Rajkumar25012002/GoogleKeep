@@ -1,3 +1,5 @@
+@import '/src/styles/shared-styles.scss';
+
 .label-editor {
     display: flex;
     flex-direction: column;
@@ -5,9 +7,11 @@
     gap: 0.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     padding: 0.5rem;
-    p{
+
+    p {
         margin: 0;
     }
+
     &>.header {
         font-weight: 500;
     }
@@ -54,7 +58,18 @@
     }
 
     &>.no-label {
-        color: rgb(137, 137, 137);
         font-size: small;
+    }
+}
+
+.light-mode {
+    background-color: $light-background-color;
+
+    .label-display {
+        ::-webkit-scrollbar {
+            &-thumb {
+                background-color: $light-scroll-color;
+            }
+        }
     }
 }

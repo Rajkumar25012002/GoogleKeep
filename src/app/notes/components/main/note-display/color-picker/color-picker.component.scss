@@ -1,11 +1,13 @@
+@import '/src/styles/shared-styles.scss';
+
 .color-pallete,
 .image-pallete {
     display: flex;
-    // flex-wrap: wrap;
+    flex-wrap: wrap;
     gap: 0.25rem;
     padding: 0.5rem;
     background-color: rgb(32, 33, 36);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
 
     .color,
     .image {
@@ -36,4 +38,8 @@
         height: 2.5rem;
         width: 2.5rem;
     }
+}
+
+.light-mode {
+    background-color: $light-background-color;
 }

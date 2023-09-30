@@ -18,8 +18,10 @@ export class SharedService {
     params: { [x: string]: any };
   } | null>(null);
   activeRoute$ = this.activeRoute.asObservable();
-  searchQuery=new BehaviorSubject<string>('');
-  searchQuery$=this.searchQuery.asObservable();
+  searchQuery = new BehaviorSubject<string>('');
+  searchQuery$ = this.searchQuery.asObservable();
+  isDarkMode = new BehaviorSubject<boolean>(false);
+  isDarkMode$ = this.isDarkMode.asObservable();
   showAllLabels(): void {
     this.showLabels = true;
   }
@@ -40,5 +42,8 @@ export class SharedService {
   }
   setSearchQuery(query: string): void {
     this.searchQuery.next(query);
+  }
+  setIsDarkMode(): void {
+    this.isDarkMode.next(!this.isDarkMode.getValue());
   }
 }

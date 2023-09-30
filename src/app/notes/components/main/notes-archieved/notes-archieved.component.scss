@@ -1,3 +1,5 @@
+@import '/src/styles/shared-styles.scss';
+
 .note-display {
     display: flex;
     flex-direction: column;
@@ -25,7 +27,8 @@
         height: 60rem;
 
     }
-    &>.empty{
+
+    &>.empty {
         position: absolute;
         display: flex;
         flex-direction: column;
@@ -33,13 +36,33 @@
         gap: 2rem;
         justify-content: center;
         top: 40%;
-        &>p{
+
+        &>p {
             font-size: 1.5rem;
             color: rgb(154, 160, 166);
         }
-        &>i{
+
+        &>i {
             font-size: 5rem;
-            color: rgb(55,56,58);
+            color: rgb(55, 56, 58);
+        }
+    }
+}
+
+.light-mode {
+    &::-webkit-scrollbar {
+        &-thumb {
+            background-color: $light-scroll-color;
+        }
+    }
+
+    &>.empty {
+        &>p {
+            color: $light-empty-text-color;
+        }
+
+        &>i {
+            color: $light-empty-icon-color
         }
     }
 }

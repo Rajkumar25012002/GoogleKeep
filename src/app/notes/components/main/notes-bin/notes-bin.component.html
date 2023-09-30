@@ -1,4 +1,4 @@
-<div class="note-display">
+<div class="note-display" [ngClass]="{'light-mode': !isDarkMode}">
     <span *ngIf="notes?.length">
         <p>Notes in the Bin are deleted after 7 days</p>
         <button (click)="emptyBin()">Empty bin</button>
@@ -13,9 +13,6 @@
                         <header>{{note.title}}</header>
                         <p>{{note.content.slice(0, 550)}}{{note.content.length > 550 ? "..." : ""}}</p>
                         <p class="empty" *ngIf="note.content==='\n'">Empty note</p>
-                        <div *ngIf="note.labels && note.labels.length > 0" class="labels">
-                            <p *ngFor="let item of note.labels">{{item}}</p>
-                        </div>
                     </main>
                 </div>
                 <div *ngIf="note.labels && note.labels.length > 0" class="labels">

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NoteService } from 'src/app/notes/services/note.service';
+import { SharedService } from 'src/app/notes/services/shared.service';
 
 @Component({
   selector: 'app-notes-add-label',
@@ -13,7 +14,12 @@ export class NotesAddLabelComponent {
   selectedLabel: string = '';
   isCreatable: boolean = false;
   createdLabelName: string = '';
-  constructor(private noteService: NoteService, private router: Router) {}
+  isDarkMode: boolean = true;
+  constructor(
+    private noteService: NoteService,
+    private router: Router,
+    private sharedService: SharedService
+  ) {}
   ngOnInit() {
     this.noteService.getAllLabels().subscribe((labels) => {
       this.labelsList = labels;
@@ -25,6 +31,9 @@ export class NotesAddLabelComponent {
           isEditable: false,
         });
       });
+    });
+    this.sharedService.isDarkMode$.subscribe((isDarkMode) => {
+      this.isDarkMode = isDarkMode;
     });
   }
   deleteLabel(label: string): void {
@@ -67,8 +76,8 @@ export class NotesAddLabelComponent {
   }
   addLabel(): void {
     this.noteService.updateLabels([this.createdLabelName]);
-    this.isCreatable = false;
-    this.createdLabelName='';
+    // this.isCreatable = false;
+    this.createdLabelName = '';
   }
   done(): void {
     this.router.navigate(['']);

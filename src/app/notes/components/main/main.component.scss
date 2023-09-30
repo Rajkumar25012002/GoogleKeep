@@ -1,11 +1,10 @@
 .main {
     display: flex;
-
     &>:nth-child(1) {
         position: absolute;
         left: 0;
         z-index: 1;
-        background-color: rgb(32, 33, 36);
+         background-color: rgb(32, 33, 36);
     }
 
     &>:nth-child(2) {

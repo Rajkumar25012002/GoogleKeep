@@ -11,6 +11,7 @@ import { Note } from 'src/app/notes/types/note';
 export class NotesBinComponent {
   notes: Note[] = [];
   isGridDisplay: boolean = true;
+  isDarkMode: boolean = true;
   constructor(
     private noteService: NoteService,
     private sharedService: SharedService
@@ -22,6 +23,9 @@ export class NotesBinComponent {
     this.sharedService.isGridDisplay$.subscribe((isGridDisplay) => {
       this.isGridDisplay = isGridDisplay;
     });
+    this.sharedService.isDarkMode$.subscribe((isDarkMode) => {
+      this.isDarkMode = isDarkMode;
+    })
   }
   iconData = [
     {

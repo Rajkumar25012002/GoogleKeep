@@ -8,6 +8,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { Remainder } from 'src/app/notes/types/note';
+import { SharedService } from 'src/app/notes/services/shared.service';
 @Component({
   selector: 'app-remainder-setter',
   templateUrl: './remainder-setter.component.html',
@@ -31,12 +32,18 @@ export class RemainderSetterComponent {
   @Output('remainderChange') remainderChange = new EventEmitter<Remainder>();
   selectDatetime: boolean = false;
   remainder: Remainder;
-  constructor() {
+  isDarkMode: boolean = true;
+  constructor(private sharedService: SharedService) {
     this.remainder = {
       date: new Date(),
       time: '08:00',
       repeat: '',
     };
+  }
+  ngOnInit(): void {
+    this.sharedService.isDarkMode$.subscribe((isDarkMode) => {
+      this.isDarkMode = isDarkMode;
+    })
   }
   toggleSelectDatetime(): void {
     this.selectDatetime = !this.selectDatetime;

@@ -1,4 +1,4 @@
-<div class="options-menu">
+<div class="options-menu" [ngClass]="{'light-mode': !isDarkMode}">
   <ul>
     <li (click)="changeLabel()">Change Label</li>
     <li (click)="deleteNote()">Delete Note</li>
