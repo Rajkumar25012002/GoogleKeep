@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Note, Remainder } from '../types/note';
+import { ColorEntry, Note, Remainder } from '../types/note';
 import { Observable, BehaviorSubject, map } from 'rxjs';
 @Injectable({
   providedIn: 'root',
@@ -57,21 +57,25 @@ export class NoteService {
     return this.notes$.pipe(
       map((notes: Note[]) =>
         notes.filter(
-          (note: Note) => note.backgroundColor === color && !note.isDeleted
+          (note: Note) =>
+            note?.backgroundColor?.darkColor === color && !note.isDeleted
         )
       )
     );
   }
-  getAllBackgroundColor(): Observable<string[]> {
+  getAllBackgroundColor(): Observable<ColorEntry[]> {
     return this.notes$.pipe(
       map((notes: Note[]) => {
-        const uniqueColors = new Set<string>();
+        const uniqueColorsMap = new Map<string, ColorEntry>();
 
         notes.forEach((note: Note) => {
-          uniqueColors.add(note.backgroundColor || '');
+          if (note?.backgroundColor) {
+            const colorKey = `${note.backgroundColor.name}-${note.backgroundColor.darkColor}-${note.backgroundColor.lightColor}`;
+            uniqueColorsMap.set(colorKey, note.backgroundColor);
+          }
         });
 
-        return Array.from(uniqueColors);
+        return Array.from(uniqueColorsMap.values());
       })
     );
   }
@@ -207,7 +211,7 @@ export class NoteService {
     });
     this.noteSubject$.next(updatedNote);
   }
-  editBackground(id: string, color: string, image: string): void {
+  editBackground(id: string, color: ColorEntry, image: string): void {
     const updatedNote = this.noteSubject$.getValue().map((value) => {
       if (value.id === id) {
         value.backgroundColor = color;

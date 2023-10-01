@@ -15,12 +15,26 @@
         width: 2rem;
         border-radius: 50%;
         cursor: pointer;
-        position: relative;
 
         &:hover {
             border: 1px solid;
         }
+         &>.name {
+        position: absolute;
+        width: max-content;
+        padding: 0.15rem;
+        border-radius: 0.25rem;
+        z-index: 7;
+        bottom: -2.25rem;
+        text-align: center;
+        font-size: small;
+        background-color: rgba(82, 83, 85, 0.67);
     }
+    }
+    .color {
+        position: relative;
+    }
+   
 
     &>:nth-child(1) {
         border: 1px solid;
@@ -39,7 +53,18 @@
         width: 2.5rem;
     }
 }
+.line {
+    width: 100%;
+    height: 1px;
+    background-color: rgb(108, 108, 108);
+}
 
 .light-mode {
     background-color: $light-background-color;
+    .color{
+        .name{
+            background-color: $dark-search-background-color;
+            color: $dark-color;
+        }
+    }
 }

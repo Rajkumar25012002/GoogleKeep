@@ -5,16 +5,15 @@
     flex-direction: column;
     gap: 0.5rem;
     align-items: center;
-    justify-content: center;
     margin: 1rem;
-    max-height: 40rem;
+    height: 40rem;
     overflow-y: auto;
 
     p {
         margin: 0;
     }
 
-    .search-type-box{
+    &>.search-type {
         display: flex;
         flex-direction: column;
         background-color: rgb(40, 41, 44);
@@ -92,20 +91,19 @@
 }
 
 .light-mode {
-    
-    .search-type-box{
+    &>.search-type{
         background-color: $light-searchtype-background-color;
 
 
         &>header>button:hover {
-            background-color: $light-icon-hover-background-color;
+            background-color: $light-icon-hover-background-color ;
         }
 
         &>main {
-            .search-item {
-                background-color: $light-searchitem-background-color;
+            &>.search-item {
+                background-color: $light-searchitem-background-color ;
 
-                :hover {
+                &:hover {
                     background-color: $light-searchitem-hover-background-color;
                 }
             }

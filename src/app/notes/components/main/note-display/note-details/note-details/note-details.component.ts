@@ -1,4 +1,4 @@
-import { Note, Remainder } from 'src/app/notes/types/note';
+import { ColorEntry, Note, Remainder } from 'src/app/notes/types/note';
 import { DatePipe } from '@angular/common';
 import {
   Component,
@@ -50,7 +50,7 @@ export class NoteDetailsComponent implements OnInit, AfterViewInit {
   showRemainder: boolean = false;
   isOptionsMenuVisible: boolean = false;
   isLabelEditorVisible: boolean = false;
-  selectedColor: string = 'transparent';
+  selectedColor: ColorEntry = {} as ColorEntry;
   selectedImage: string = '';
   editRemainder: boolean = false;
   iconData = [

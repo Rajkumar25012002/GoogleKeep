@@ -21,10 +21,11 @@
         flex-direction: column;
         border-radius: 0.25rem;
         width: 40rem;
+        border-radius: 0.25rem;
         max-height: 30rem;
         z-index: 3;
         background-color: rgb(32, 33, 36);
-        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
 
 
         .icon {
@@ -200,6 +201,24 @@
     &>.single-note {
         background-color: $light-background-color;
 
+        .icon {
+            i {
+                color: $light-icon-note-color;
+            }
+
+            &:hover {
+                background-color: $light-icon-note-hover-background-color;
+            }
+        }
+
+        &>.info {
+            &>main {
+                .empty {
+                    color: $light-empty-text-color;
+                }
+            }
+        }
+
         &>main {
             &>.info {
                 &::-webkit-scrollbar {
@@ -211,8 +230,8 @@
 
             &>.labels>p,
             .remainder {
-                border: none;
-                background-color: $light-icon-hover-background-color;
+                border: 1px solid $light-border-color;
+                background-color: $light-icon-note-hover-background-color;
             }
         }
 
@@ -228,7 +247,7 @@
             }
 
             &>button:hover {
-                background-color: $light-icon-hover-background-color;
+                background-color: $light-icon-note-hover-background-color;
             }
         }
     }

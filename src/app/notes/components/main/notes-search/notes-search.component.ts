@@ -79,7 +79,7 @@ export class NotesSearchComponent {
             data.values.push({
               icon: '',
               iconName: color,
-              searchtext: color,
+              searchtext: color.darkColor,
             });
           });
         }

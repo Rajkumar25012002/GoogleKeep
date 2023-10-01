@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { NoteService } from 'src/app/notes/services/note.service';
 import { SharedService } from 'src/app/notes/services/shared.service';
-import { Note, Remainder } from 'src/app/notes/types/note';
+import { ColorEntry, Note, Remainder } from 'src/app/notes/types/note';
 
 @Component({
   selector: 'app-take-notes',
@@ -94,7 +94,7 @@ export class TakeNotesComponent {
   show: boolean = false;
   showRemainder: boolean = false;
   expand: boolean = false;
-  selectedColor: string = 'transparent';
+  selectedColor: ColorEntry = {} as ColorEntry;
   selectedImage: string = '';
   notes: Note[] = [];
   isLabelEditorVisible: boolean = false;
@@ -106,8 +106,6 @@ export class TakeNotesComponent {
     id: Math.random().toString(10),
     title: '',
     content: '',
-    backgroundColor: '',
-    backgroundImage: '',
     editedOn: new Date(),
     labels: [],
     isPinned: false,
@@ -156,7 +154,7 @@ export class TakeNotesComponent {
       id: Math.random().toString(10),
       title: '',
       content: '',
-      backgroundColor: '',
+      backgroundColor: {} as ColorEntry,
       backgroundImage: '',
       editedOn: new Date(),
       labels: [],
@@ -165,7 +163,7 @@ export class TakeNotesComponent {
       isEdited: false,
       isDeleted: false,
     };
-    (this.selectedColor = ''), (this.selectedImage = '');
+    (this.selectedColor = {} as ColorEntry), (this.selectedImage = '');
   }
   pinNote(): void {
     this.isPinned = !this.isPinned;
@@ -195,7 +193,7 @@ export class TakeNotesComponent {
   }
   expandNoteEditor(): void {
     this.expand = !this.expand;
-    (this.selectedColor = ''), (this.selectedImage = '');
+    (this.selectedColor = {} as ColorEntry), (this.selectedImage = '');
     if (this.expand) {
       setTimeout(() => {
         this.noteContent.nativeElement.focus();

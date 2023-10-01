@@ -1,5 +1,5 @@
 <div class="single-note" [ngClass]="{'light-mode': !isDarkMode}"
-    [ngStyle]="{backgroundColor: note.backgroundColor,backgroundImage: 'url(' + note.backgroundImage + ')',width: isGridDisplay ? '' : '35rem'}">
+    [ngStyle]="{backgroundColor: isDarkMode ? note.backgroundColor?.darkColor :note.backgroundColor?.lightColor,backgroundImage: 'url(' + note.backgroundImage + ')',width: isGridDisplay ? '' : '35rem'}">
     <div class="info" (click)="openNoteDetails()">
         <main class="content">
             <header>{{note.title}}</header>

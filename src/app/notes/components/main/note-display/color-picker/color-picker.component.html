@@ -1,8 +1,12 @@
 <div class="color-pallete" *ngIf="show" [ngClass]="{'light-mode': !isDarkMode}">
-    <div class="color" *ngFor="let color of colorPallete" [ngStyle]="{backgroundColor: color}"
-        [ngClass]="color === selectedColor ? 'transparentBorder' : ''" (click)="changeColor(color)">
+    <div class="color" *ngFor="let color of colorPallete, let i = index"
+        [ngStyle]="{backgroundColor: isDarkMode ? color.darkColor :color.lightColor}"
+        [ngClass]="color.name === selectedColor.name ? 'transparentBorder' : ''" (click)="changeColor(color)"
+        (mouseover)="showName(i)" (mouseout)="hideName()">
+        <p *ngIf="showColorName[i].show" class="name">{{color.name}}</p>
     </div>
 </div>
+<div class="line"></div>
 <div class="image-pallete" *ngIf="show" [ngClass]="{'light-mode': !isDarkMode}">
     <div class="image" *ngFor="let image of imagePallete" [ngClass]="image === selectedImage ? 'transparentBorder' : ''"
         (click)="changeImage(image)" [ngStyle]="{backgroundImage: 'url(' + image + ')'}">

@@ -20,7 +20,7 @@ export class SharedService {
   activeRoute$ = this.activeRoute.asObservable();
   searchQuery = new BehaviorSubject<string>('');
   searchQuery$ = this.searchQuery.asObservable();
-  isDarkMode = new BehaviorSubject<boolean>(false);
+  isDarkMode = new BehaviorSubject<boolean>(true);
   isDarkMode$ = this.isDarkMode.asObservable();
   showAllLabels(): void {
     this.showLabels = true;

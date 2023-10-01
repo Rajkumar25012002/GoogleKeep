@@ -1,6 +1,7 @@
 <div class="popup-background" *ngIf="note!=undefined" [ngClass]="{'light-mode': !isDarkMode}">
     <div class="single-note">
-        <main [ngStyle]="{backgroundColor: note.backgroundColor,backgroundImage: 'url(' + note.backgroundImage + ')'}">
+        <main
+            [ngStyle]="{backgroundColor: isDarkMode ? note.backgroundColor?.darkColor :note.backgroundColor?.lightColor,backgroundImage: 'url(' + note.backgroundImage + ')'}">
             <div class="info">
                 <main class="note-content">
                     <header>{{note.title}}</header>
@@ -26,27 +27,26 @@
                     (click)="deleteRemainder()"></i>
             </div>
         </main>
-        <footer [ngStyle]="{backgroundColor: note.backgroundColor}">
-            <div class="icon" *ngFor="let item of iconData">
-                <i [ngClass]="item.iconClasses" (mouseover)="showIconName(item.iconName)" (mouseout)="hideIconName()"
-                    (click)="item.clickAction()">
-                </i>
-                <p *ngIf="item.showName" class="name">{{item.iconName}}</p>
-            </div>
-            <button (click)="close()">Close</button>
-            <app-note-options class="options" *ngIf="isOptionsMenuVisible" (changeLabelClicked)="changeLabel()"
-                (deleteNoteClicked)="deleteNote()" (makeCopyClicked)="makeCopy()">
-            </app-note-options>
-            <app-label-editor class="label-editor-component" [noteId]="note.id"
-                *ngIf="isLabelEditorVisible"></app-label-editor>
-            <div class="color-picker" (click)="showColorPicker()">
-                <app-color-picker [show]="show" [(selectedColor)]="selectedColor"
-                    [(selectedImage)]="selectedImage"></app-color-picker>
-            </div>
-            <div class="remainder-setter" *ngIf="showRemainder">
-                <app-remainder-setter [(showRemainder)]="showRemainder"
-                    (remainderChange)="remainderSet($event)"></app-remainder-setter>
-            </div>
-        </footer>
+        <footer [ngStyle]="{backgroundColor: isDarkMode ? note.backgroundColor?.darkColor :note.backgroundColor?.lightColor}">
+            <div class=" icon" *ngFor="let item of iconData">
+            <i [ngClass]="item.iconClasses" (mouseover)="showIconName(item.iconName)" (mouseout)="hideIconName()"
+                (click)="item.clickAction()">
+            </i>
+            <p *ngIf="item.showName" class="name">{{item.iconName}}</p>
     </div>
+    <button (click)="close()">Close</button>
+    <app-note-options class="options" *ngIf="isOptionsMenuVisible" (changeLabelClicked)="changeLabel()"
+        (deleteNoteClicked)="deleteNote()" (makeCopyClicked)="makeCopy()">
+    </app-note-options>
+    <app-label-editor class="label-editor-component" [noteId]="note.id" *ngIf="isLabelEditorVisible"></app-label-editor>
+    <div class="color-picker" (click)="showColorPicker()">
+        <app-color-picker [show]="show" [(selectedColor)]="selectedColor"
+            [(selectedImage)]="selectedImage"></app-color-picker>
+    </div>
+    <div class="remainder-setter" *ngIf="showRemainder">
+        <app-remainder-setter [(showRemainder)]="showRemainder"
+            (remainderChange)="remainderSet($event)"></app-remainder-setter>
+    </div>
+    </footer>
+</div>
 </div>

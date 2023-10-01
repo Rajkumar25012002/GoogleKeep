@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Note, Remainder } from 'src/app/notes/types/note';
+import { ColorEntry, Note, Remainder } from 'src/app/notes/types/note';
 import { DatePipe } from '@angular/common';
 import { NoteService } from 'src/app/notes/services/note.service';
 import { Router } from '@angular/router';
@@ -15,7 +15,11 @@ export class SingleNoteComponent {
   @Input('note') note!: Note;
   @Input('isGridDisplay') isGridDisplay!: boolean;
   isDarkMode: boolean = true;
-  constructor(private noteService: NoteService, private router: Router,private sharedService: SharedService) {}
+  constructor(
+    private noteService: NoteService,
+    private router: Router,
+    private sharedService: SharedService
+  ) {}
   ngOnInit(): void {
     this.iconData.map((icon) => {
       if (icon.iconName === 'Archieve') {
@@ -24,7 +28,7 @@ export class SingleNoteComponent {
     });
     this.sharedService.searchQuery$.subscribe((query) => {
       this.searchQuery = query;
-    })
+    });
     this.sharedService.isDarkMode$.subscribe((isDarkMode) => {
       this.isDarkMode = isDarkMode;
     });
@@ -34,7 +38,7 @@ export class SingleNoteComponent {
   editRemainder: boolean = false;
   isOptionsMenuVisible: boolean = false;
   isLabelEditorVisible: boolean = false;
-  selectedColor: string = 'transparent';
+  selectedColor: ColorEntry = {} as ColorEntry;
   selectedImage: string = '';
   searchQuery: string = '';
   iconData = [
@@ -126,14 +130,13 @@ export class SingleNoteComponent {
     this.noteService.deleteRemainder(this.note.id);
   }
   displayRemainder(): void {
-      this.editRemainder = true;
-
+    this.editRemainder = true;
   }
-  remainderSet(remainder:Remainder): void {
+  remainderSet(remainder: Remainder): void {
     this.noteService.setRemainderForNote(this.note.id, remainder);
   }
   hideRemainder(): void {
-      this.editRemainder = false;
+    this.editRemainder = false;
   }
   deleteNote(): void {
     this.isOptionsMenuVisible = false;

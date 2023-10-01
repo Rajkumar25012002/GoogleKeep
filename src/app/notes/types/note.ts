@@ -2,7 +2,7 @@ export interface Note {
   id: string;
   title: string;
   content: string;
-  backgroundColor?: string;
+  backgroundColor?: ColorEntry;
   backgroundImage?: string;
   editedOn?: Date;
   labels?: string[];
@@ -16,4 +16,10 @@ export interface Remainder {
   date?: Date;
   time?: string;
   repeat?: string;
+}
+
+export interface ColorEntry {
+  name: string;
+  darkColor: string;
+  lightColor: string;
 }

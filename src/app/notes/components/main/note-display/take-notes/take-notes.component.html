@@ -1,5 +1,6 @@
 <div class="take-note" [ngClass]="{'light-mode': !isDarkMode}">
-    <main [ngStyle]="{backgroundColor: selectedColor,backgroundImage: 'url(' + selectedImage + ')'}">
+    <main
+        [ngStyle]="{backgroundColor: isDarkMode?selectedColor.darkColor:selectedColor.lightColor,backgroundImage: 'url(' + selectedImage + ')'}">
         <div class="header" *ngIf="expand">
             <input type="text" name="title" placeholder="Title" [value]="newNotes.title"
                 (keyup)="changeTitle($event)" />
@@ -22,7 +23,8 @@
             </ng-container>
         </div>
     </main>
-    <div class="footer" *ngIf="expand" [ngStyle]="{backgroundColor: selectedColor}">
+    <div class="footer" *ngIf="expand"
+        [ngStyle]="{backgroundColor: isDarkMode?selectedColor.darkColor:selectedColor.lightColor}">
         <div class="icon" *ngFor="let item of noteIconData">
             <i [ngClass]="item.iconClasses" (mouseover)="showIconName(item.iconName)" (mouseout)="hideIconName()"
                 (click)="item.clickAction()">

@@ -34,7 +34,7 @@
             width: max-content;
             padding: 0.15rem;
             border-radius: 0.25rem;
-            bottom: -2.25rem;
+            bottom: -1.5rem;
             text-align: center;
             font-size: small;
             background-color: rgba(82, 83, 85, 0.67);
@@ -107,6 +107,7 @@
             border-radius: 0.25rem;
             padding: 0.5rem;
             border: none;
+            cursor: pointer;
             font-weight: bold;
             outline: none;
 
@@ -120,6 +121,7 @@
         position: absolute;
         align-self: center;
         bottom: -6rem;
+        z-index: 6;
     }
 
     .remainder-setter {
@@ -164,14 +166,26 @@
     border: none;
 
     .icon {
-        &>.name {
-            background-color: $dark-search-background-color;
+        i {
+            color: $light-icon-note-color;
+        }
+
+        &:hover {
+            background-color: $light-icon-note-hover-background-color;
+        }
+    }
+
+    &>.info {
+        &>main {
+            .empty {
+                color: $light-empty-text-color;
+            }
         }
     }
 
     .footer {
         &>button:hover {
-            background-color: $light-button-hover-background-color;
+            background-color: $light-icon-note-hover-background-color;
         }
     }
 

@@ -1,5 +1,5 @@
-<div class="search-container" *ngIf="searchQuery.length<1" [ngStyle]="{'light-mode': !isDarkMode}">
-    <div class="search-type-box" *ngFor="let item of searchData">
+<div class="search-container" *ngIf="searchQuery.length<1" [ngClass]="{'light-mode': !isDarkMode}">
+    <div class="search-type" *ngFor="let item of searchData">
         <ng-container *ngIf="item.values.length>1">
             <header>
                 <p>{{item.type}}</p>
